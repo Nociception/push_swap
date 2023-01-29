@@ -41,16 +41,22 @@ void	push(t_stack **origin, t_stack **dest)
 
 void	push_a(t_stack **A, t_stack **B)
 {
-	printf("pa\n");
-	push(B, A);
-	*A = top_stack(*A);
-	(*A)->a_or_b = 'A';
+	if (*A)
+	{
+		printf("pa\n");
+		push(B, A);
+		*A = top_stack(*A);
+		(*A)->a_or_b = 'A';
+	}
 }
 
 void	push_b(t_stack **A, t_stack **B)
 {
-	printf("pb\n");
-	push(A, B);
-	*B = top_stack(*B);
-	(*B)->a_or_b = 'B';
+	if (*B)
+	{
+		printf("pb\n");
+		push(A, B);
+		*B = top_stack(*B);
+		(*B)->a_or_b = 'B';
+	}
 }
