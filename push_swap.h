@@ -7,8 +7,9 @@
 typedef struct  s_stack
 {
     int             nb;
-    int             index_max;
     int             index;
+    int             index_max;
+    int             initial_index_max;
     int             spaces;
 	char			a_or_b;
     struct s_stack  *precedent;
@@ -35,6 +36,10 @@ void                index_on_A(t_stack *A, t_stack *S);
 void                algo_three(t_stack **A);
 
 /*-----Length 4-----*/
+
+int sorted_final_stack(t_stack *A);
+void	set_sorted_final_stack_ontop(t_stack **A);
+int	sorted_final_stack_ontop(t_stack *A);
 int		sorted_stack(t_stack *A);
 void	set_sorted_stack_ontop(t_stack **A);
 void	algo_four(t_stack **A);
@@ -44,6 +49,8 @@ void	extract_target_ontop(int target, t_stack **stack);
 
 
 /*-----Length 5-----*/
+void	ra_twice_if_necessary(t_stack **A);
+void	algo_five(t_stack **A, t_stack **B);
 
 /*-----Length under 7-----*/
 int are_directneighbors(int x, int y, int len);
@@ -51,11 +58,12 @@ int are_directneighbors(int x, int y, int len);
 
 /*-----Neighbors-----*/
 int	direct_neighbors(int i, int j, int index_max);
-int	two_tops_dneighbors(t_stack *A, t_stack *B);
-int	first_second_dneighbors(t_stack *A);
+int	both_tops_dneighbors(t_stack *A, t_stack *B);
+int	top_second_dneighbors(t_stack *A);
 int	top_bottom_dneighbors(t_stack *A);
-int	first_second_in_order(t_stack *A);
+int	top_second_in_order(t_stack *A);
 int	top_bottom_in_order(t_stack *A);
+int	both_tops_in_order(t_stack *A, t_stack *B);
 
 /*-----Numbers utils-----*/
 int                 ft_atoi(char *s);

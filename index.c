@@ -22,6 +22,7 @@ void    index_on_S(t_stack *S, int len)
     {
         S->index = index;
         S->index_max = len - 1;
+        S->initial_index_max = len - 1;
         index++;
         S = S->next;
     }
@@ -46,6 +47,7 @@ void    index_on_A(t_stack *A, t_stack *S)
     {
         A->index = get_nb_index_in_S(A->nb, S);
         A->index_max = S->index_max;
+        A->initial_index_max = S->initial_index_max;
         A = A->next;
     }
 }

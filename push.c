@@ -41,7 +41,7 @@ void	push(t_stack **origin, t_stack **dest)
 
 void	push_a(t_stack **A, t_stack **B)
 {
-	if (*A)
+	if (*B)
 	{
 		printf("pa\n");
 		push(B, A);
@@ -52,7 +52,7 @@ void	push_a(t_stack **A, t_stack **B)
 
 void	push_b(t_stack **A, t_stack **B)
 {
-	if (*B)
+	if (*A)
 	{
 		printf("pb\n");
 		push(A, B);

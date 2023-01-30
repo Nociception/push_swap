@@ -12,128 +12,69 @@
 
 #include "push_swap.h"
 
-int sorted_stack(t_stack *A)
+int sorted_final_stack(t_stack *A)
 {
-	int	len;
+	int	i;
+	int	ii_max;
 
-	len = 0;
 	if (A)
 	{
-		A = top_stack(A);
-		len = len_stack(A);
-		if (A->next)
-		{
-			while (A->next && (A->index + 1)%len == A->next->index)
-				A = A->next;
-			if (!(A->next))
-				return (1);
-			return (0);
-		}
-		return (0);
+		i = 0;
+		ii_max = A->initial_index_max + 1;
+		// ligne trop longue
+		while (++i <= ii_max && A->next && (A->index + 1)%ii_max == A->next->index)
+			A = A->next;
+		if (i == ii_max && !(A->next))
+			return (1);
 	}
 	return (0);
 }
 
-int	target_in_stack(int target, t_stack *stack)
+void	set_sorted_final_stack_ontop(t_stack **A)
 {
-	if (stack)
-	{
-		while (stack)
-		{
-			if (stack->index == target)
-				return (1);
-			stack = stack->next;
-		}
-	}
-	return (0);
+	int	zero_here;
+
+	if (*A && sorted_final_stack(*A))
+		extract_target_ontop(0, A);
 }
 
-int shortest_way_to_target(int target, t_stack *stack)
+int	sorted_final_stack_ontop(t_stack *A)
 {
-	int	way;
-
-	way = 0;
-	if (stack)
-	{
-		stack = top_stack(stack);
-		while (stack)
-		{
-			if (stack->index == target)
-			{
-				if (way <= stack->index_max / 2)
-					return (way);
-				return (way - (stack->index_max + 1));
-			}
-			stack = stack->next;
-			way++;
-		}
-	}
-	return (2000);
+	return (A && sorted_final_stack(A) && !(top_stack(A)->index));
 }
 
-void	extract_target_ontop(int target, t_stack **stack)
+static	void	moves_tb_direct_neighbors(t_stack **A)
 {
-	int	nb_rotate;
-
-	if (*stack && target_in_stack(target, *stack))
+	if (top_bottom_in_order(*A))
+		rotate_a(A);
+	else
 	{
-		nb_rotate = shortest_way_to_target(target, *stack);
-		if (nb_rotate > 0)
-		{
-			while (--nb_rotate >= 0)
-			{
-				if ((*stack)->a_or_b == 'A')
-					rotate_a(stack);
-				else
-					rotate_b(stack);
-			}
-		}
-		else if (nb_rotate < 0)
-		{
-			while (++nb_rotate <= 0)
-			{
-				if ((*stack)->a_or_b == 'A')
-					reverserotate_a(stack);
-				else
-					reverserotate_b(stack);
-			}
-		}
+		reverserotate_a(A);
+		swap_a(A);
 	}
 }
-/*
-void	set_sorted_stack_ontop(t_stack **A)
-{
-	void(A);
-	return ;
-}
 
-int	sorted_stack_ontop(t_stack *A)
+static	void	moves_ts_direct_neighbors(t_stack **A)
 {
-
+	if (top_second_in_order(*A))
+		ra_twice(A);
+	else
+		swap_a(A);
 }
 
 void	algo_four(t_stack **A)
 {
-	while (!stack_sorted(*A))
+	if (*A)
 	{
-		if (top_bottom_dneighbors(*A))
+		while (!sorted_final_stack(*A))
 		{
-			if (top_bottom_in_order(*A))
-				rotate_a(A);
-		}
-		else if (first_second_dneighbors(*A))
-		{
-			if (first_second_in_order(*A))
-			{
-				rotate_a(A);
-				rotate_a(A);
-			}
+			if (top_second_dneighbors(*A))
+				moves_ts_direct_neighbors(A);
+			else if (top_bottom_dneighbors(*A))
+				moves_tb_direct_neighbors(A);
 			else
-				swap_a(A);
+				rotate_a(A);
 		}
-		else
-			rotate_a(A);
+		set_sorted_final_stack_ontop(A);
 	}
-	set_sorted_stack_ontop(A);
 }
-*/

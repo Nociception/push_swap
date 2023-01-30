@@ -24,7 +24,7 @@ int	direct_neighbors(int i, int j, int index_max)
 	return (0);
 }
 
-int	two_tops_dneighbors(t_stack *A, t_stack *B)
+int	both_tops_dneighbors(t_stack *A, t_stack *B)
 {
 	if (A && B)
 	{
@@ -35,7 +35,7 @@ int	two_tops_dneighbors(t_stack *A, t_stack *B)
 	return (0);
 }
 
-int	first_second_dneighbors(t_stack *A)
+int	top_second_dneighbors(t_stack *A)
 {
 	if (A && A->next)
 	{
@@ -53,13 +53,27 @@ int	top_bottom_dneighbors(t_stack *A)
 	if (A && A->next)
 	{
 		A = top_stack(A);
-		index_bottom = bottom_stack(A)->index;
+		index_bottom = (bottom_stack(A))->index;
 		return (direct_neighbors(A->index, index_bottom, A->index_max));
 	}
 	return (0);
 }
 
-int	first_second_in_order(t_stack *A)
+int	both_tops_in_order(t_stack *A, t_stack *B)
+{
+	int	mod;
+
+	if (A && B)
+	{
+		mod = A->index_max + 1;
+		A = top_stack(A);
+		B = top_stack(B);
+		return ((B->index + 1)%mod == A->index);
+	}
+	return (0);
+}
+
+int	top_second_in_order(t_stack *A)
 {
 	int	mod;
 

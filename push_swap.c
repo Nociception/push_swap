@@ -1,5 +1,5 @@
 #include "push_swap.h"
-//Norme, headers, checker, include printf
+//Norme, headers, checker, include printf, parsing (nb uniques notamment)
 
 int main(int ac, char *av[])
 {
@@ -26,19 +26,16 @@ int main(int ac, char *av[])
 
         showABS(A, B, S, len);
 
-        //algo_length(&A, &B, len);
-		// retour sur length_four
-		if (target_in_stack(0,A))
-		{
-			printf("MAIN : shortest_way_to_target(0, A) = %d\n", shortest_way_to_target(0, A));
-			extract_target_ontop(0,&A);
-		}
-		else
-			printf("MAIN : la cible n'est pas dans A\n");
+        algo_length(&A, &B, len);
 
         showABS(A, B, S, len);
     }
     printf("MAIN : -----------------------------------\n");
+    printf("MAIN : traitement termine\n");
+    if (sorted_final_stack_ontop(A))
+            printf("MAIN : STACK SORTED !!!\n");
+        else
+            printf("MAIN : Stack not sorted :( :( :(\n");
     printf("MAIN : return (0) imminent ; AUCUN CRASH\n");
     return (0);
 }

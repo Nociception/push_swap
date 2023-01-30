@@ -14,6 +14,7 @@ void    initialize_stack_element(t_stack *element)
 {
     element->index = -1;
     element->index_max = -1;
+    element->initial_index_max = -1;
     element->nb = -1;
     element->next = NULL;
     element->precedent = NULL;
