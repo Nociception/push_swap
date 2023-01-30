@@ -13,4 +13,6 @@ void    algo_length(t_stack **A, t_stack **B, int len)
     	algo_four(A);
 	else if (len == 5 && !ssot)
 		algo_five(A, B);
+	else if (len == 6 && !ssot)
+		algo_six(A, B);
 }

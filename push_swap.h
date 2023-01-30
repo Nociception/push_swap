@@ -52,8 +52,12 @@ void	extract_target_ontop(int target, t_stack **stack);
 void	ra_twice_if_necessary(t_stack **A);
 void	algo_five(t_stack **A, t_stack **B);
 
+/*-----Length 6-----*/
+void algo_six(t_stack **A, t_stack **B);
+int	peer_in_order(t_stack *A, int x, int y);
+
 /*-----Length under 7-----*/
-int are_directneighbors(int x, int y, int len);
+int direct_neighbors(int x, int y, int len);
 //char peer(t_stack *A, t_stack *B, int len);
 
 /*-----Neighbors-----*/

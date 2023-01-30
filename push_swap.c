@@ -1,5 +1,5 @@
 #include "push_swap.h"
-//Norme, headers, checker, include printf, parsing (nb uniques notamment)
+//Norme (variable lettre majuscule), headers, checker, include printf, parsing (nb uniques notamment)
 
 int main(int ac, char *av[])
 {

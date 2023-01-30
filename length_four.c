@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:10:17 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/01/29 22:47:07 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:22:44 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int sorted_final_stack(t_stack *A)
 
 void	set_sorted_final_stack_ontop(t_stack **A)
 {
-	int	zero_here;
-
 	if (*A && sorted_final_stack(*A))
 		extract_target_ontop(0, A);
 }
@@ -57,7 +55,7 @@ static	void	moves_tb_direct_neighbors(t_stack **A)
 static	void	moves_ts_direct_neighbors(t_stack **A)
 {
 	if (top_second_in_order(*A))
-		ra_twice(A);
+		ra_twice_if_necessary(A);
 	else
 		swap_a(A);
 }

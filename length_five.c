@@ -6,7 +6,7 @@ void	ra_twice_if_necessary(t_stack **A)
 	{
 		rotate_a(A);
 		if (!sorted_final_stack(*A))
-		rotate_a(A);
+			rotate_a(A);
 	}
 }
 
@@ -86,21 +86,7 @@ Tant que la pile n'est pas triée
 		ra_twice_if_necessary
 	sinon
 		pb
+placement de la pile triee
 
 
-
-int sorted_stack(t_stack *A)
-{
-
-}
-
-void	set_sorted_stack_ontop(t_stack **A)
-{
-
-}
-
-int	sorted_stack_ontop(t_stack *A)
-{
-
-}
 */
