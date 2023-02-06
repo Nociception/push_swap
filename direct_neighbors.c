@@ -102,3 +102,4 @@ int	top_bottom_in_order(t_stack *A)
 	}
 	return (0);
 }
+

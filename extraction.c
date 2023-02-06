@@ -20,7 +20,7 @@ int shortest_way_to_target(int target, t_stack *stack)
 			way++;
 		}
 	}
-	return (2000);
+	return (42000);
 }
 
 void	extract_target_ontop(int target, t_stack **stack)

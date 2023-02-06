@@ -1,6 +1,18 @@
 #include "push_swap.h"
-//Norme (variable lettre majuscule), headers, checker, include printf, parsing (nb uniques notamment)
+/*
+retravailler l'algo 6 avant d'entamer l'algo principal
 
+Norme (variable lettre majuscule)
+headers
+Bonus : checker
+include printf
+parsing (nb uniques notamment)
+structure englobante (notamment pour compter le nombre de moves)
+
+ajouter une data a la structure t_stack pour generer un indice de circonstance
+OU
+jouer sur l'indice max
+*/
 int main(int ac, char *av[])
 {
     int *array;

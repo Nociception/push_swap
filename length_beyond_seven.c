@@ -133,4 +133,228 @@ si la cible choisie est le 1er :
     et si la cible choisie est le 2ème :
         aucune liste n'est maj ; le 1er est maintenant la seule cible prioritaire disponible
 
+
+TROISIEME ALGO
+
+Tant que la liste n'est pas triée
+
+
+
+Partie 0
+liste des 6 : de l'index 1 à 6
+liste des 3 : index 0 et 7 8
+liste de la moitié : les (len(A) - 9) / 2 suivants
+liste des autres (l'autre "moitié")
+
+Première étape de la purge vers B :
+    la liste des 6 et la liste des 3 est conservée dans A 
+    (éventuellement, lorsque deux voisins non ordonnés de ces listes sont rencontrés, les swap)
+    la première moitié est laissé dans la partie supérieure de B
+    L'autre moitié est envoyée au bottom de B
+
+Partie 1
+Quand A ne contient plus que la liste des 6 et la liste des 3 :
+    les 3 sont purgés sur B
+    les 6 voient leur index respectifs réduits de 1, et leur index max ajusté à 6 (ou 5, ou 7 je ne sais plus)
+    les 6 sont triés tel que :
+        quand l'un des  6 n'a aucune proximité avec ses mitoyens, mais que dans ces mitoyens il y a l'un des 3
+        le membre des 3 est extrait au top de A, puis push sur B et envoyé au bottom de B
+        algo6
+
+Quand les 6 sont triés :
+    les 6 voient leur index respectifs rétablis, de même que leur indice max
+    les 3 sont extraits du bottom de B puis envoyés sur A à leur emplacement approprié respectifs
+
+Partie 2
+Quand les 3 sont consommés :
+    nouvelles listes :
+        Prioritaires : les 2 suivants, ne pouvant être que dans la première moitié de B
+            maj jusqu'à épuisement de la secondaire
+        Secondaires : les 1/4 suivants (la moitié de la moitié)
+            maj jusqu'à la moitié
+    pendant l'extraction d'une cible prioritaire :
+        si elle est extraite de la première moitié de B (à coup de rb):
+            les éléments de la liste secondaire sont envoyés sur A
+            les autres sont envoyés et laissés au bottom de B par le mouvements des ra successifs
+            la cible prioritaire est envoyé sur A, puis au bottom de A
+        si elle est extraite de la première moitié de A (à coup de pb):
+            à ce stade, la première moitié de A ne peut contenir QUE des secondaires
+            les éléments de la liste secondaire sont envoyés sur B, et laissés au top
+            la cible prioritaire est envoyé au bottom de A (ra)
+        si elle est extraite de la deuxième moitié de B (à coup de rra) 
+        (ce qui arrivera une fois le premier quart consommé) :
+            les éléments de la liste secondaire sont envoyés sur A (pa)
+            les autres sont laissés au top de B
+            la cible prioritaire est envoyée sur A, puis au bottom de A
+
+Partie 3
+Quand la première moitiée est épuisée : avant dernière étape (juste avant le placement de A triée)
+    nouvelles listes :
+        Prioritaires : les deux suivants    
+            maj à partir de la secondaire
+            si la deuxième est envoyée en premier :
+                aucune maj ; la seule cible prioritaire devient la première
+        Secondaires : les 1/6 du reste suivants
+            maj jusqu'à épuisement de B
+    pendant l'extraction d'une cible prioritaire:
+        si elle est extraite da la première moitié de B (à coup de rb) :
+            les secondaires sont envoyés sur A, et laissés au top
+            les autres sont laissés au bottom de B (par le mouvement des rb)
+            la cible prioritaire est envoyée sur A, puis au bottom de A
+        si elle est extraite de la première moitié de A (à coup de pb) :
+            les secondaires sont laissés sur B
+            les autres sont envoyés au bottom de B
+            la cible prioritaire est envoyée au bottom de A (ra)
+        si elle est extraite de la deuxième moitié de B (à coup de rrb) :
+            les secondaires sont envoyés sur A (pa)
+            les autres laissés sur B
+            la cible prioritaire est envoyée sur A, puis au bottom de A
+
+Partie 4
+Placement de A triée
+
+Considérations pratiques :
+les listes prioritaires et secondaires seront des tableaux d'int remplis par les index
+la liste des prioritaires sera d'abord 
+    durant les trois premières partie : un tableau de trois int (pas besoin de malloc celui-ci)
+    durant les parties 4 et 5 : un tableau de trois int (toujours pas besoin de malloc celui-ci)
+la liste des secondaires sera un tableau d'int malloc à la taille 1/4 de l'index max initial
+
+
+Avec une liste de 3 suivants prioritaires :
+    Si le premier arrive sans les autres
+        il est directement branché
+        la liste est mise à jour
+    Et Si le premier arrive avec le deuxième déjà présent :
+        si le premier arrive de B :
+            le deuxième est envoyé au top, puis le premier est push dessus
+            les deux sont envoyés au bottom
+        Et si le premier provient du top de A :
+            le deuxième est envoyé au top de A
+            les deux sont swap
+            les deux sont envoyés au bottom
+        la liste est mise à jour
+    Et si le premier arrive avec le troisième déjà présent :
+        si le premier arrive de B :
+            le troisième est envoyé au top, puis le premier est push dessus
+            les deux sont envoyés au bottom
+        Et si le premier provient du top de A :
+            le troisième est envoyé au top de A
+            les deux sont swap
+            les deux sont envoyés au bottom
+        la liste est mise à jour :
+            le troisième devient le deuxième, le troisième est rempli à partir de la secondaire
+    Et si le premier arrive avec le deuxième et troisième déjà présent et ordonnés :
+        si le premier arrive de B :
+            les deuxième et troisième sont envoyés au top de A
+            le premier est push dessus
+            les trois sont envoyés au bottom de A
+        et si le premier provient du top de A :
+            une fois le premier au top, il est push sur B
+            les deuxièmes et troisièmes sont envoyés au top de A
+            le premier est push sur A
+            les trois sont envoyés au bottom de A
+        la liste est mise à jour
+    Et si le deuxième arrive sans les autres
+        il est directement branché
+        la liste est mise à jour (l'index (dans la liste) du deuxième passe en négatif)
+    Et si le deuxième arrive avec le troisième déjà présent :
+        si le deuxième arrive de B :
+            le troisième est envoyé au top, puis le deuxième est push dessus
+            les deux sont envoyés au bottom
+        Et si le deuxième provient du top de A :
+            le troisième est envoyé au top de A
+            les deux sont swap
+            les deux sont envoyés au bottom
+        la liste est mise à jour
+    Et si le troisième arrive sans les autres :
+        il est directement branché
+        la liste est mise à jour (l'index (dans la liste) du troisième passe en négatif)
+    Et si le troisième arrive avec le deuxième déjà présent :
+        il est directement envoyé au bottom de B
+        la liste est mise à jour (l'index (dans la liste) du troisième passe en négatif)
+
+Avec une liste des 4 suivants prioritaires :
+Si le premier arrive sans les autres
+        il est directement branché
+        la liste est mise à jour
+    Et Si le premier arrive avec le deuxième déjà présent :
+        si le premier arrive de B :
+            le deuxième est envoyé au top, puis le premier est push dessus
+            les deux sont envoyés au bottom
+        Et si le premier provient du top de A :
+            le deuxième est envoyé au top de A
+            les deux sont swap
+            les deux sont envoyés au bottom
+        la liste est mise à jour
+    Et si le premier arrive avec le troisième déjà présent :
+        si le premier arrive de B :
+            le troisième est envoyé au top, puis le premier est push dessus
+            les deux sont envoyés au bottom
+        Et si le premier provient du top de A :
+            le troisième est envoyé au top de A
+            les deux sont swap
+            les deux sont envoyés au bottom
+        la liste est mise à jour :
+            le troisième devient le deuxième, le troisième est rempli à partir de la secondaire
+    Et si le premier arrive avec le quatrième déjà présent :
+        si le premier arrive de B :
+            le quatrième est envoyé au top, puis le premier est push dessus
+            les deux sont envoyés au bottom
+        Et si le premier provient du top de A :
+            le quatrième est envoyé au top de A
+            les deux sont swap
+            les deux sont envoyés au bottom
+        la liste est mise à jour :
+            le quatrième devient le troisième, le quatrième est rempli à partir de la secondaire
+    Et si le premier arrive avec le deuxième et troisième déjà présents et ordonnés :
+        si le premier arrive de B :
+            les deuxième et troisième sont envoyés au top de A
+            le premier est push dessus
+            les trois sont envoyés au bottom de A
+        et si le premier provient du top de A :
+            une fois le premier au top, il est push sur B
+            les deuxièmes et troisièmes sont envoyés au top de A
+            le premier est push sur A
+            les trois sont envoyés au bottom de A
+        la liste est mise à jour
+    Et si le premier arrive avec le troisième et quatrième déjà présents et ordonnés :
+        si le premier arrive de B :
+            les troisième et quatrième sont envoyés au top de A
+            le premier est push dessus
+            les trois sont envoyés au bottom de A
+        et si le premier provient du top de A :
+            une fois le premier au top, il est push sur B
+            les troisième et quatrième sont envoyés au top de A
+            le premier est push sur A
+            les trois sont envoyés au bottom de A
+        la liste est mise à jour
+    Et si le deuxième arrive sans les autres
+        il est directement branché
+        la liste est mise à jour (l'index (dans la liste) du deuxième passe en négatif)
+    Et si le deuxième arrive avec le troisième déjà présent :
+        si le deuxième arrive de B :
+            le troisième est envoyé au top, puis le deuxième est push dessus
+            les deux sont envoyés au bottom
+        Et si le deuxième provient du top de A :
+            le troisième est envoyé au top de A
+            les deux sont swap
+            les deux sont envoyés au bottom
+        la liste est mise à jour
+    Et si le deuxième arrive avec le quatrième déjà présent :
+    Et si le troisième arrive sans les autres :
+        il est directement branché
+        la liste est mise à jour (l'index (dans la liste) du troisième passe en négatif)
+    Et si le troisième arrive avec le deuxième déjà présent :
+        il est directement envoyé au bottom de B
+        la liste est mise à jour (l'index (dans la liste) du troisième passe en négatif)
+...
+
+Avec une liste des n suivants prioritaires :
+    une fois la cible prioritaire choisie pour l'envoyer au bottom de A :
+        on fait remonter les déjà présents (indexés en négatif dans la liste des prioritaires)
+        jusqu'à l'index directement inférieur à la cible
+        puis la cible est push sur A
+        si la cible suivante 
+
 */

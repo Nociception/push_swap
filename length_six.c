@@ -92,6 +92,46 @@ static void	moves_ppp(t_stack **A, t_stack **B)
 		push_a(A,B);
 	}
 }
+
+int	top_second_ms_dneighbors(t_stack *A, t_stack *B)
+{
+	if (A && B && B->next)
+	{
+		A = top_stack(A);
+		B = (top_stack(B))->next;
+		return (direct_neighbors(A->index, B->index, A->index_max);
+	}
+}
+
+void	moves_ts_ms_dneighbors(t_stack **A, t_stack **B)
+{
+	if (*B && (*B)->next)
+	{
+		*B = top_stack(*B);
+		swap_b(B);
+	}
+}
+
+int	second_second_ms_dneighbors(t_stack *A, t_stack *B)
+{
+	if (A && A->next && B && B->next)
+	{
+		A = (top_stack(A))->next;
+		B = (top_stack(B))->next;
+		return (direct_neighbors(A->index, B->index, A->index_max);
+	}
+}
+
+void	moves_ss_ms_dneighbors(t_stack **A, t_stack **B)
+{
+	if (*A && (*A)->next && *B && (*B)->next)
+	{
+		*A = top_stack(*A);
+		*B = top_stack(*B);
+		swap_both(A, B);
+	}
+}
+
 /*
 tant que (pile non triee)
 {
@@ -136,6 +176,10 @@ void algo_six(t_stack **A, t_stack **B)
 				moves_ts_direct_neighbors(A, *B);
 			else if (top_bottom_dneighbors(*A))
 				moves_tb_direct_neighbors(A);
+			else if (top_second_ms_neighbors(*A, *B))
+				moves_ts_ms_neighbors(A, B);
+			else if (second_second_ms_neighbors(*A, *B))
+				moves_ss_ms_neighbors(A, B);
 			else
 				push_b(A, B);
 		}
@@ -152,6 +196,7 @@ peerpeerpeer :
 5 3 2 6 1 4 provoque des mouvements a la con
 2 3 1 6 4 5 provoque une boucle infinie (pattern des mouvements peerpeerpeer detecte)
 1     4     6     2     5     3   pose un probleme (resolu avec la recherche chez le second de B)
+2 6 1 3 5 4
 
 Tant que la pile n'est pas triée
   si peerpeerpeer
