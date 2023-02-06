@@ -74,7 +74,7 @@ def cancel(instruction, A, B):
     elif instruction == 'rrr' :
         return rotate(A), rotate(B)
 
-def manual(A=specimen):
+def manual(A):
     S = list(A)
     S.sort()
     B = []
