@@ -53,7 +53,7 @@ int len_int(int nb)
     return (len);
 }
 
-int	abs_value(int n)
+int	abs_val(int n)
 {
 	if (n >= 0)
 		return (n);
@@ -67,4 +67,16 @@ void	swap_int(int *x, int *y)
 	temp = *x;
 	*x = *y;
 	*y = temp;
+}
+
+int	ft_max(int x, int y)
+{
+	if (x >= y)
+		return (x);
+	return (y);
+}
+
+int	mean_two_positive_numbers(int x, int y)
+{
+	return ((x + y) / 2);
 }

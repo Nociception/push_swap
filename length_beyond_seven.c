@@ -166,7 +166,6 @@ Quand les 6 sont triés :
     les 3 sont extraits du bottom de B puis envoyés sur A à leur emplacement approprié respectifs
 
 Partie 2
-Quand les 3 sont consommés :
     nouvelles listes :
         Prioritaires : les 2 suivants, ne pouvant être que dans la première moitié de B
             maj jusqu'à épuisement de la secondaire
@@ -190,13 +189,13 @@ Quand les 3 sont consommés :
 Partie 3
 Quand la première moitiée est épuisée : avant dernière étape (juste avant le placement de A triée)
     nouvelles listes :
-        Prioritaires : les deux suivants    
+        Prioritaires : les deux suivants
             maj à partir de la secondaire
             si la deuxième est envoyée en premier :
                 aucune maj ; la seule cible prioritaire devient la première
         Secondaires : les 1/6 du reste suivants
             maj jusqu'à épuisement de B
-    pendant l'extraction d'une cible prioritaire:
+    pendant l'extraction d'une cible prioritaire :
         si elle est extraite da la première moitié de B (à coup de rb) :
             les secondaires sont envoyés sur A, et laissés au top
             les autres sont laissés au bottom de B (par le mouvement des rb)

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void    algo_length(t_stack **A, t_stack **B, int len)
+void    algo_length(t_stack **A, t_stack **B, t_stack *S, int len)
 {
     int ssot;
 
@@ -15,4 +15,6 @@ void    algo_length(t_stack **A, t_stack **B, int len)
 		algo_five(A, B);
 	else if (len == 6 && !ssot)
 		algo_six(A, B);
+	else if (len > 6 && !ssot)
+		algo_beyond_seven(A, B, S);
 }

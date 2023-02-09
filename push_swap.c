@@ -12,6 +12,10 @@ structure englobante (notamment pour compter le nombre de moves)
 ajouter une data a la structure t_stack pour generer un indice de circonstance
 OU
 jouer sur l'indice max
+
+free les targets perdantes
+
+stocker les les mouvements dans une liste chainee pour ensuite l'optimiser/ecremer
 */
 int main(int ac, char *av[])
 {
@@ -38,8 +42,15 @@ int main(int ac, char *av[])
 
         showABS(A, B, S, len);
 
-        algo_length(&A, &B, len);
-
+		/*
+		purge_after_twelve(&A, &B, &S);
+		last_purge(&A, &B);
+		decrease_indexes(A);
+		algo_three(&A);
+		increase_indexes(A);
+		printf("A_sortedfrom_zero_to_eleven(A) = %d\n", A_sortedfrom_zero_to_eleven(A));
+		*/
+		algo_length(&A, &B, S, len);
         showABS(A, B, S, len);
     }
     printf("MAIN : -----------------------------------\n");

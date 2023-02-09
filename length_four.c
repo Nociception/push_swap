@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:10:17 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/01/30 19:22:44 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:10:55 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 int sorted_final_stack(t_stack *A)
 {
 	int	i;
-	int	ii_max;
+	int	mod;
 
 	if (A)
 	{
 		i = 0;
-		ii_max = A->initial_index_max + 1;
-		// ligne trop longue
-		while (++i <= ii_max && A->next && (A->index + 1)%ii_max == A->next->index)
+		mod = A->index_max + 1;
+		while (++i <= mod && A->next && (A->index + 1)%mod == A->next->index)
 			A = A->next;
-		if (i == ii_max && !(A->next))
+		if (i == mod && !(A->next))
 			return (1);
 	}
 	return (0);

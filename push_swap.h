@@ -16,8 +16,16 @@ typedef struct  s_stack
     struct s_stack  *next;
 } t_stack;
 
+typedef struct	s_target
+{
+	char stack;
+	int	index;
+	char	location;
+	char	destination;
+} t_target;
+
 /*-----Algo length-----*/
-void                algo_length(t_stack **A, t_stack **B, int len);
+void                algo_length(t_stack **A, t_stack **B, t_stack *S, int len);
 
 
 /*-----Array utils-----*/
@@ -26,6 +34,10 @@ void                show_array(int *array, int len);
 int                 *copy_array(int *array, int len);
 int                 *sort_array(int *array, int len);
 int                 index_nb_in_array(int nb, int *array, int len);
+
+/*-----Extraction-----*/
+int	target_in_stack(int target, t_stack *stack);
+
 
 /*-----Index-----*/
 void                index_on_S(t_stack *S, int len);
@@ -73,7 +85,9 @@ int	both_tops_in_order(t_stack *A, t_stack *B);
 int                 ft_atoi(char *s);
 int                 len_int(int nb);
 void	swap_int(int *x, int *y);
-int	abs_value(int n);
+int	abs_val(int n);
+int	ft_max(int x, int y);
+int	mean_two_positive_numbers(int x, int y);
 
 
 
@@ -120,5 +134,22 @@ void	swap(t_stack **stack);
 void	swap_a(t_stack **A);
 void	swap_b(t_stack **B);
 void	swap_both(t_stack **A, t_stack **B);
+
+/*-----Target Basic Utils-----*/
+t_target *new_target(void);
+void initialize_target(t_target *target);
+void	intel_target(int index, t_target *target, t_stack *A, t_stack *B);
+void	show_target_details(t_target *target);
+
+/*-----Third Algo-----*/
+int	only_twelve_first(t_stack *A);
+void purge_after_twelve(t_stack **A, t_stack **B);
+void    last_purge(t_stack **A, t_stack **B);
+void    decrease_indexes(t_stack *A);
+void	increase_indexes(t_stack *A);
+int	A_sortedfrom_zero_to_eleven(t_stack *A);
+void	algo_beyond_seven(t_stack **A, t_stack **B, t_stack *S);
+
+
 
 #endif

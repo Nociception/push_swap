@@ -28,7 +28,7 @@ void    showABS(t_stack *A, t_stack *B, t_stack *S, int len)
     {
         if (lenA == len)
         {
-            printf("%d%s", A->nb, spaces(A->spaces));
+            printf("%d%s", A->index, spaces(A->spaces)); // remplace provisoirement par index
             lenA--;
             A = A->next;
         }
@@ -36,13 +36,13 @@ void    showABS(t_stack *A, t_stack *B, t_stack *S, int len)
             printf("               ");
         if (lenB == len)
         {
-            printf("%d%s", B->nb, spaces(B->spaces));
+            printf("%d%s", B->index, spaces(B->spaces)); // remplace provisoirement par index
             lenB--;
             B = B->next;
         }
         else
             printf("               ");
-        printf("%d\n", S->nb);
+        printf("%d\n", S->index); // remplace provisoirement par index
         len--;
         S = S->next;
     }

@@ -50,7 +50,7 @@ int	peer_in_order(t_stack *A, int x, int y)
 		index_max = A->index_max;
 		if ((x == 0 && y == index_max) || (x == index_max && y == 0))
 			return (1);
-		range = abs_value(x - y);
+		range = abs_val(x - y);
 		if (range == 1)
 			return (1);
 	}
@@ -99,11 +99,12 @@ int	top_second_ms_dneighbors(t_stack *A, t_stack *B)
 	{
 		A = top_stack(A);
 		B = (top_stack(B))->next;
-		return (direct_neighbors(A->index, B->index, A->index_max);
+		return (direct_neighbors(A->index, B->index, A->index_max));
 	}
+	return (0);
 }
 
-void	moves_ts_ms_dneighbors(t_stack **A, t_stack **B)
+void	moves_ts_ms_dneighbors(t_stack **B)
 {
 	if (*B && (*B)->next)
 	{
@@ -118,8 +119,9 @@ int	second_second_ms_dneighbors(t_stack *A, t_stack *B)
 	{
 		A = (top_stack(A))->next;
 		B = (top_stack(B))->next;
-		return (direct_neighbors(A->index, B->index, A->index_max);
+		return (direct_neighbors(A->index, B->index, A->index_max));
 	}
+	return (0);
 }
 
 void	moves_ss_ms_dneighbors(t_stack **A, t_stack **B)
@@ -161,7 +163,7 @@ tant que (pile non triee)
 placer la pile triee
 */
 
-/*
+
 void algo_six(t_stack **A, t_stack **B)
 {
 	if (*A)
@@ -176,17 +178,17 @@ void algo_six(t_stack **A, t_stack **B)
 				moves_ts_direct_neighbors(A, *B);
 			else if (top_bottom_dneighbors(*A))
 				moves_tb_direct_neighbors(A);
-			else if (top_second_ms_neighbors(*A, *B))
-				moves_ts_ms_neighbors(A, B);
-			else if (second_second_ms_neighbors(*A, *B))
-				moves_ss_ms_neighbors(A, B);
+			else if (top_second_ms_dneighbors(*A, *B))
+				moves_ts_ms_dneighbors(B);
+			else if (second_second_ms_dneighbors(*A, *B))
+				moves_ss_ms_dneighbors(A, B);
 			else
 				push_b(A, B);
 		}
 	set_sorted_final_stack_ontop(A);
 	}
 }
-*/
+
 
 /*
 

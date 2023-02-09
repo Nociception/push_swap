@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:31:49 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/01/30 19:59:31 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:55:19 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	direct_neighbors(int i, int j, int index_max)
 
 	if ((i == 0 && j == index_max) || (i == index_max && j == 0))
 		return (1);
-	range = abs_value(i - j);
+	range = abs_val(i - j);
 	if (range == 1)
 		return (1);
 	return (0);
