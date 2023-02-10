@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 20:51:43 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/01/28 21:54:44 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/10 23:29:35 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rotate(t_stack **stack)
 		{
 			second = (*stack)->next;
 			if (!(second->next))
-				swap(stack);
+				rotate(stack);
 			else
 			{
 				bottom = bottom_stack(*stack);
@@ -47,21 +47,44 @@ void	rotate(t_stack **stack)
 	}
 }
 
-void	rotate_a(t_stack **a)
+void	rotate_a(t_stack **a, t_stack *b)
 {
-	printf("ra\n");
-	rotate(a);
+	t_stack	*index_zero;
+
+	if (*a && (*a)->next)
+	{
+		rotate(a);
+		printf("ra\n");
+		index_zero = index_stack(*a, b, 0);
+		add_back_move(index_zero->move, 'r', 'a', ' ');
+	}
+
 }
 
-void	rotate_b(t_stack **b)
+void	rotate_b(t_stack *a, t_stack **b)
 {
-	printf("rb\n");
-	rotate(b);
+	t_stack	*index_zero;
+
+	if (*b && (*b)->next)
+	{
+		rotate(b);
+		printf("rb\n");
+		index_zero = index_stack(a, *b, 0);
+		add_back_move(index_zero->move, 'r', 'b', ' ');
+	}
+
 }
 
 void	rotate_both(t_stack **a, t_stack **b)
 {
-	printf("rr\n");
-	rotate(a);
-	rotate(b);
+	t_stack *index_zero;
+
+	if (*a && (*a)->next && *b && (*b)->next)
+	{
+		printf("rr\n");
+		rotate(a);
+		rotate(b);
+		index_zero = index_stack(*a, *b, 0);
+		add_back_move(index_zero->move, 'r', 'r', ' ');
+	}
 }

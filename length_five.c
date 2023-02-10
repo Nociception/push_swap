@@ -1,12 +1,12 @@
 #include "push_swap.h"
 
-void	ra_twice_if_necessary(t_stack **a)
+void	ra_twice_if_necessary(t_stack **a, t_stack *b)
 {
 	if (*a && (*a)->next)
 	{
-		rotate_a(a);
+		rotate_a(a, b);
 		if (!sorted_final_stack(*a))
-			rotate_a(a);
+			rotate_a(a, b);
 	}
 }
 
@@ -16,8 +16,8 @@ static void	moves_tt_dneighbors(t_stack **a, t_stack **b)
 	{
 		push_a(a, b);
 		if (!top_second_in_order(*a))
-			swap_a(a);
-		ra_twice_if_necessary(a);
+			swap_a(a, *b);
+		ra_twice_if_necessary(a, *b);
 	}
 }
 
@@ -27,25 +27,25 @@ static void	moves_ts_direct_neighbors(t_stack **a, t_stack *b)
 	{
 		if (!top_second_in_order(*a))
 		{
-			swap_a(a);
+			swap_a(a, b);
 			if (both_tops_dneighbors(*a, b))
 				return ;
 		}
-		ra_twice_if_necessary(a);
+		ra_twice_if_necessary(a, b);
 	}
 }
 
-static void	moves_tb_direct_neighbors(t_stack **a)
+static void	moves_tb_direct_neighbors(t_stack **a, t_stack *b)
 {
 	if (*a)
 	{
 		if (!top_bottom_in_order(*a))
 		{
-			reverserotate_a(a);
-			swap_a(a);
-			ra_twice_if_necessary(a);
+			reverserotate_a(a, b);
+			swap_a(a, b);
+			ra_twice_if_necessary(a, b);
 		}
-		rotate_a(a);
+		rotate_a(a, b);
 	}
 	
 }
@@ -59,11 +59,11 @@ void	algo_five(t_stack **a, t_stack **b)
 		else if (top_second_dneighbors(*a))
 			moves_ts_direct_neighbors(a, *b);
 		else if (top_bottom_dneighbors(*a))
-			moves_tb_direct_neighbors(a);
+			moves_tb_direct_neighbors(a, *b);
 		else
 			push_b(a, b);
 	}
-	set_sorted_final_stack_ontop(a);
+	set_sorted_final_stack_ontop(a, *b);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 19:43:56 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/01/28 22:22:47 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/10 23:34:02 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,44 @@ void	swap(t_stack **stack)
 	}
 }
 
-void	swap_a(t_stack **a)
+void	swap_a(t_stack **a, t_stack *b)
 {
-	printf("sa\n");
-	swap(a);
+	t_stack	*index_zero;
+
+	if (*a && (*a)->next)
+	{
+		swap(a);
+		printf("sa\n");
+		index_zero = index_stack(*a, b, 0);
+		add_back_move(index_zero->move, 's', 'a', ' ');
+	}
+
 }
 
-void	swap_b(t_stack **b)
+void	swap_b(t_stack *a, t_stack **b)
 {
-	printf("sb\n");
-	swap(b);
+	t_stack	*index_zero;
+
+	if (*b && (*b)->next)
+	{
+		swap(b);
+		printf("sb\n");
+		index_zero = index_stack(a, *b, 0);
+		add_back_move(index_zero->move, 's', 'b', ' ');
+	}
+
 }
 
 void	swap_both(t_stack **a, t_stack **b)
 {
-	printf("ss\n");
-	swap(a);
-	swap(b);
+	t_stack *index_zero;
+
+	if (*a && (*a)->next && *b && (*b)->next)
+	{
+		printf("ss\n");
+		swap(a);
+		swap(b);
+		index_zero = index_stack(*a, *b, 0);
+		add_back_move(index_zero->move, 's', 's', ' ');
+	}
 }

@@ -12,7 +12,7 @@ int	only_twelve_first(t_stack *a)
 	return (1);
 }
 
-int	stargets_in_B(t_stack *b, int mean_left)
+int	stargets_in_b(t_stack *b, int mean_left)
 {
 	while (b)
 	{
@@ -25,6 +25,8 @@ int	stargets_in_B(t_stack *b, int mean_left)
 
 void purge_after_twelve(t_stack **a, t_stack **b)
 {
+	printf("purge_after_twelve : Entree\n");
+	//le segfault est a trouver ici
 	int	mean_left;
 
 	mean_left = mean_two_positive_numbers(12, (*a)->initial_index_max);
@@ -35,16 +37,16 @@ void purge_after_twelve(t_stack **a, t_stack **b)
 		if ((*a)->index >= 12)
 		{
 			push_b(a, b);
-			if ((*b)->index > mean_left && stargets_in_B(*b, mean_left))
+			if ((*b)->index > mean_left && stargets_in_b(*b, mean_left))
 			{
 				if ((*a)->index <= 11)
 					rotate_both(a, b);
 				else
-					rotate_b(b);
+					rotate_b(*a, b);
 			}
 		}
 		else
-			rotate_a(a);
+			rotate_a(a, *b);
 	}
 }
 
@@ -74,18 +76,19 @@ int	only_six_seven_eight(t_stack *a)
 
 void    last_purge(t_stack **a, t_stack **b)
 {
+	printf("last_purge : Entree\n");
 	*a = top_stack(*a);
 	while (!only_three_to_eight(*a))
 	{
 		if ((*a)->index >= 3 && (*a)->index <= 8)
-			rotate_a(a);
+			rotate_a(a, *b);
 		else
 			push_b(a, b);
 	}
 	while (!only_six_seven_eight(*a))
 	{
 		if ((*a)->index >= 6 && (*a)->index <= 8)
-			rotate_a(a);
+			rotate_a(a, *b);
 		else
 			push_b(a, b);
 	}
@@ -143,28 +146,28 @@ void plug_nine_lucky(t_target *target, t_stack **a, t_stack **b, int *ht)
 	{
 		if (target->destination == 'u')
 		{
-			extract_target_ontop(*ht, a);
-			extract_target_ontop(target->index, b);
+			extract_target_ontop(*ht, a, b);
+			extract_target_ontop(target->index, a, b);
 			push_a(a, b);
 		}
 		else if (target->destination == 'd')
 		{
-			extract_target_ontop(*ht, a);
-			rotate_a(a);
-			extract_target_ontop(target->index, b);
+			extract_target_ontop(*ht, a, b);
+			rotate_a(a, *b);
+			extract_target_ontop(target->index, a, b);
 			push_a(a, b);
-			rotate_a(a);
+			rotate_a(a, *b);
 		}
 	}
 	else if (target->stack == 'a' && target->location == 'u')
 	{
 
-		extract_target_ontop(target->index, a);
+		extract_target_ontop(target->index, a, b);
 		push_b(a, b);
-		extract_target_ontop(*ht, a);
+		extract_target_ontop(*ht, a, b);
 		push_a(a,b);
 		if (target->destination == 'd')
-			rotate_a(a);
+			rotate_a(a, *b);
 	}
 	if (target->index > *ht)
 		(*ht)++;
@@ -235,10 +238,11 @@ void    nine_lucky(t_stack **a, t_stack **b, t_stack *s)
 
 void    part_one(t_stack **a, t_stack **b, t_stack *s)
 {
+	//printf("part_one : Entree\n");
     purge_after_twelve(a, b);
 	last_purge(a, b);
     decrease_indexes(*a);
-	algo_three(a);
+	algo_three(a, *b);
     increase_indexes(*a);
     nine_lucky(a, b, s);
 }
@@ -308,6 +312,7 @@ void    part_five(t_stack **a, t_stack **b)
 */
 void    algo_beyond_seven(t_stack **a, t_stack **b, t_stack *s)
 {
+	//printf("algo_beyond_seven : Entree\n");
 	part_one(a, b, s);
     part_two(a, b);
 	/*

@@ -6,12 +6,11 @@
 
 typedef struct  s_move
 {
-    char    m1;
-    char    m2;
-    char    m3;
+    char	first;
+	char	second;
+	char	third;
     struct s_move   *next;
     struct s_move   *precedent;
-    
 } t_move;
 
 typedef struct  s_stack
@@ -48,31 +47,33 @@ int                 index_nb_in_array(int nb, int *array, int len);
 
 /*-----Extraction-----*/
 int	target_in_stack(int target, t_stack *stack);
+void	extract_target_ontop(int target, t_stack **a, t_stack **b);
 
 
 /*-----Index-----*/
 void                index_on_s(t_stack *s, int len);
 int                 get_nb_index_in_s(int a_nb, t_stack *s);
 void                index_on_a(t_stack *a, t_stack *s);
+t_stack *get_element_index_in_stack(t_stack *stack, int index);
+t_stack	*index_stack(t_stack *a, t_stack *b, int index);
 
 /*-----Length 3-----*/
-void                algo_three(t_stack **a);
+void                algo_three(t_stack **a, t_stack *b);
 
 /*-----Length 4-----*/
 
 int sorted_final_stack(t_stack *a);
-void	set_sorted_final_stack_ontop(t_stack **a);
+void	set_sorted_final_stack_ontop(t_stack **a, t_stack *b);
 int	sorted_final_stack_ontop(t_stack *a);
 int		sorted_stack(t_stack *a);
-void	set_sorted_stack_ontop(t_stack **a);
-void	algo_four(t_stack **a);
+void	set_sorted_stack_ontop(t_stack **a, t_stack *b);
+void	algo_four(t_stack **a, t_stack *b);
 int	target_in_stack(int target, t_stack *stack);
 int shortest_way_to_target(int target, t_stack *stack);
-void	extract_target_ontop(int target, t_stack **stack);
 
 
 /*-----Length 5-----*/
-void	ra_twice_if_necessary(t_stack **a);
+void	ra_twice_if_necessary(t_stack **a, t_stack *b);
 void	algo_five(t_stack **a, t_stack **b);
 
 /*-----Length 6-----*/
@@ -84,7 +85,11 @@ int direct_neighbors(int x, int y, int len);
 //char peer(t_stack *a, t_stack *b, int len);
 
 /*-----Move struct-----*/
-t_move *new_move(void);
+void	initialize_move(t_move *move);
+t_move *new_struct_move(void);
+t_move 		*add_back_move(t_move *move, char f, char s, char t);
+void	print_moves(t_stack *a, t_stack *b);
+
 
 /*-----Neighbors-----*/
 int	direct_neighbors(int i, int j, int index_max);
@@ -117,14 +122,14 @@ void	push_b(t_stack **a, t_stack **b);
 
 /*-----Reverse Rotate-----*/
 void	reverserotate(t_stack **stack);
-void	reverserotate_a(t_stack **a);
-void	reverserotate_b(t_stack **b);
+void	reverserotate_a(t_stack **a, t_stack *b);
+void	reverserotate_b(t_stack *a, t_stack **b);
 void	reverserotate_both(t_stack **a, t_stack **b);
 
 /*-----Rotate-----*/
 void	rotate(t_stack **stack);
-void	rotate_a(t_stack **a);
-void	rotate_b(t_stack **b);
+void	rotate_a(t_stack **a, t_stack *b);
+void	rotate_b(t_stack *a, t_stack **b);
 void	rotate_both(t_stack **a, t_stack **b);
 
 /*-----Stack basic utils-----*/
@@ -145,8 +150,8 @@ t_stack *top_stack(t_stack *stack);
 
 /*-----Swap-----*/
 void	swap(t_stack **stack);
-void	swap_a(t_stack **a);
-void	swap_b(t_stack **b);
+void	swap_a(t_stack **a, t_stack *b);
+void	swap_b(t_stack *a, t_stack **b);
 void	swap_both(t_stack **a, t_stack **b);
 
 /*-----Target Basic Utils-----*/
@@ -163,7 +168,5 @@ void    decrease_indexes(t_stack *a);
 void	increase_indexes(t_stack *a);
 int	a_sortedfrom_zero_to_eleven(t_stack *a);
 void	algo_beyond_seven(t_stack **a, t_stack **b, t_stack *s);
-
-
 
 #endif

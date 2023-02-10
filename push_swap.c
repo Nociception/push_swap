@@ -25,7 +25,6 @@ int main(int ac, char *av[])
     t_stack *a;
     t_stack *b;
     t_stack *s;
-    t_move *move;
 
     len = ac - 1;
     a = NULL;
@@ -43,11 +42,12 @@ int main(int ac, char *av[])
 
         show_abs(a, b, s, len);
 
-		algo_length(&a, &b, s, len, move);
+		algo_length(&a, &b, s, len);
         show_abs(a, b, s, len);
     }
     printf("MAIN : -----------------------------------\n");
     printf("MAIN : traitement termine\n");
+	print_moves(a, b);
     if (sorted_final_stack_ontop(a))
             printf("MAIN : STACK SORTED !!!\n");
         else

@@ -6,8 +6,8 @@ static void	moves_tt_dneighbors(t_stack **a, t_stack **b)
 	{
 		push_a(a, b);
 		if (!top_second_in_order(*a))
-			swap_a(a);
-		ra_twice_if_necessary(a);
+			swap_a(a, *b);
+		ra_twice_if_necessary(a, *b);
 	}
 }
 
@@ -17,25 +17,25 @@ static void	moves_ts_direct_neighbors(t_stack **a, t_stack *b)
 	{
 		if (!top_second_in_order(*a))
 		{
-			swap_a(a);
+			swap_a(a, b);
 			if (both_tops_dneighbors(*a, b))
 				return ;
 		}
-		ra_twice_if_necessary(a);
+		ra_twice_if_necessary(a, b);
 	}
 }
 
-static void	moves_tb_direct_neighbors(t_stack **a)
+static void	moves_tb_direct_neighbors(t_stack **a, t_stack *b)
 {
 	if (*a)
 	{
 		if (!top_bottom_in_order(*a))
 		{
-			reverserotate_a(a);
-			swap_a(a);
-			ra_twice_if_necessary(a);
+			reverserotate_a(a, b);
+			swap_a(a, b);
+			ra_twice_if_necessary(a, b);
 		}
-		rotate_a(a);
+		rotate_a(a, b);
 	}
 	
 }
@@ -86,8 +86,8 @@ static void	moves_ppp(t_stack **a, t_stack **b)
 	{
 		push_b(a,b);
 		push_b(a,b);
-		rotate_a(a);
-		rotate_a(a);
+		rotate_a(a, *b);
+		rotate_a(a, *b);
 		push_a(a,b);
 		push_a(a,b);
 	}
@@ -104,12 +104,12 @@ int	top_second_ms_dneighbors(t_stack *a, t_stack *b)
 	return (0);
 }
 
-void	moves_ts_ms_dneighbors(t_stack **b)
+void	moves_ts_ms_dneighbors(t_stack *a, t_stack **b)
 {
 	if (*b && (*b)->next)
 	{
 		*b = top_stack(*b);
-		swap_b(b);
+		swap_b(a, b);
 	}
 }
 
@@ -177,15 +177,15 @@ void algo_six(t_stack **a, t_stack **b)
 			else if (top_second_dneighbors(*a))
 				moves_ts_direct_neighbors(a, *b);
 			else if (top_bottom_dneighbors(*a))
-				moves_tb_direct_neighbors(a);
+				moves_tb_direct_neighbors(a, *b);
 			else if (top_second_ms_dneighbors(*a, *b))
-				moves_ts_ms_dneighbors(b);
+				moves_ts_ms_dneighbors(*a, b);
 			else if (second_second_ms_dneighbors(*a, *b))
 				moves_ss_ms_dneighbors(a, b);
 			else
 				push_b(a, b);
 		}
-	set_sorted_final_stack_ontop(a);
+	set_sorted_final_stack_ontop(a, *b);
 	}
 }
 

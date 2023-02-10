@@ -25,6 +25,49 @@ int shortest_way_to_target(int target, t_stack *stack)
 	return (0);
 }
 
+void	extraction(int nb_rotate, t_stack **a, t_stack **b, char stack)
+{
+	if (nb_rotate > 0)
+	{
+		while (--nb_rotate >= 0)
+		{
+			if (stack == 'a')
+				rotate_a(a, *b);
+			else
+				rotate_b(*a, b);
+		}
+	}
+	else if (nb_rotate < 0)
+	{
+		while (++nb_rotate < 0) // ++nb_rotate <= 0 passe en ++nb_rotate < 0
+		{
+			if (stack == 'a')
+				reverserotate_a(a, *b);
+			else
+				reverserotate_b(*a, b);
+		}
+	}
+}
+
+void	extract_target_ontop(int target, t_stack **a, t_stack **b)
+{
+	int	nb_rotate;
+	char	stack;
+
+	if (target_in_stack(target, *a))
+	{
+		nb_rotate = shortest_way_to_target(target, *a);
+		stack = 'a';
+	}
+	else
+	{
+		nb_rotate = shortest_way_to_target(target, *b);
+		stack = 'b';
+	}
+	extraction(nb_rotate, a, b, stack);
+}
+
+/*
 void	extract_target_ontop(int target, t_stack **stack)
 {
 	int	nb_rotate;
@@ -32,7 +75,6 @@ void	extract_target_ontop(int target, t_stack **stack)
 	if (*stack && target_in_stack(target, *stack))
 	{
 		nb_rotate = shortest_way_to_target(target, *stack);
-
 		if (nb_rotate > 0)
 		{
 			while (--nb_rotate >= 0)
@@ -55,7 +97,7 @@ void	extract_target_ontop(int target, t_stack **stack)
 		}
 	}
 }
-
+*/
 int	target_in_stack(int target, t_stack *stack)
 {
 	if (stack)
