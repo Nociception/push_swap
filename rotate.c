@@ -47,21 +47,21 @@ void	rotate(t_stack **stack)
 	}
 }
 
-void	rotate_a(t_stack **A)
+void	rotate_a(t_stack **a)
 {
 	printf("ra\n");
-	rotate(A);
+	rotate(a);
 }
 
-void	rotate_b(t_stack **B)
+void	rotate_b(t_stack **b)
 {
 	printf("rb\n");
-	rotate(B);
+	rotate(b);
 }
 
-void	rotate_both(t_stack **A, t_stack **B)
+void	rotate_both(t_stack **a, t_stack **b)
 {
 	printf("rr\n");
-	rotate(A);
-	rotate(B);
+	rotate(a);
+	rotate(b);
 }

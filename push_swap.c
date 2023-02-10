@@ -22,40 +22,33 @@ int main(int ac, char *av[])
     int *array;
     int *sorted;
     int len;
-    t_stack *A;
-    t_stack *B;
-    t_stack *S;
+    t_stack *a;
+    t_stack *b;
+    t_stack *s;
+    t_move *move;
 
     len = ac - 1;
-    A = NULL;
-    B = NULL;
-    S = NULL;
+    a = NULL;
+    b = NULL;
+    s = NULL;
     if (ac > 1)
     {
         array = retrieve_data(len, av);
         sorted = sort_array(array, len);
-        A = array_to_stack(array, len);
-        S = array_to_stack(sorted, len);
-        add_stack_backlinks(A);
-        index_on_S(S, len);
-        index_on_A(A, S);
+        a = array_to_stack(array, len);
+        s = array_to_stack(sorted, len);
+        add_stack_backlinks(a);
+        index_on_s(s, len);
+        index_on_a(a, s);
 
-        showABS(A, B, S, len);
+        show_abs(a, b, s, len);
 
-		/*
-		purge_after_twelve(&A, &B, &S);
-		last_purge(&A, &B);
-		decrease_indexes(A);
-		algo_three(&A);
-		increase_indexes(A);
-		printf("A_sortedfrom_zero_to_eleven(A) = %d\n", A_sortedfrom_zero_to_eleven(A));
-		*/
-		algo_length(&A, &B, S, len);
-        showABS(A, B, S, len);
+		algo_length(&a, &b, s, len, move);
+        show_abs(a, b, s, len);
     }
     printf("MAIN : -----------------------------------\n");
     printf("MAIN : traitement termine\n");
-    if (sorted_final_stack_ontop(A))
+    if (sorted_final_stack_ontop(a))
             printf("MAIN : STACK SORTED !!!\n");
         else
             printf("MAIN : Stack not sorted :( :( :(\n");

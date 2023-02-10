@@ -24,80 +24,80 @@ int	direct_neighbors(int i, int j, int index_max)
 	return (0);
 }
 
-int	both_tops_dneighbors(t_stack *A, t_stack *B)
+int	both_tops_dneighbors(t_stack *a, t_stack *b)
 {
-	if (A && B)
+	if (a && b)
 	{
-		A = top_stack(A);
-		B = top_stack(B);
-		return (direct_neighbors(A->index, B->index, A->index_max));
+		a = top_stack(a);
+		b = top_stack(b);
+		return (direct_neighbors(a->index, b->index, a->index_max));
 	}
 	return (0);
 }
 
-int	top_second_dneighbors(t_stack *A)
+int	top_second_dneighbors(t_stack *a)
 {
-	if (A && A->next)
+	if (a && a->next)
 	{
-		A = top_stack(A);
-		return (direct_neighbors(A->index, A->next->index, A->index_max));
+		a = top_stack(a);
+		return (direct_neighbors(a->index, a->next->index, a->index_max));
 	}
 	return (0);
 }
 
-int	top_bottom_dneighbors(t_stack *A)
+int	top_bottom_dneighbors(t_stack *a)
 {
 	int	index_bottom;
 
 	index_bottom = 0;
-	if (A && A->next)
+	if (a && a->next)
 	{
-		A = top_stack(A);
-		index_bottom = (bottom_stack(A))->index;
-		return (direct_neighbors(A->index, index_bottom, A->index_max));
+		a = top_stack(a);
+		index_bottom = (bottom_stack(a))->index;
+		return (direct_neighbors(a->index, index_bottom, a->index_max));
 	}
 	return (0);
 }
 
-int	both_tops_in_order(t_stack *A, t_stack *B)
+int	both_tops_in_order(t_stack *a, t_stack *b)
 {
 	int	mod;
 
-	if (A && B)
+	if (a && b)
 	{
-		mod = A->index_max + 1;
-		A = top_stack(A);
-		B = top_stack(B);
-		return ((B->index + 1)%mod == A->index);
+		mod = a->index_max + 1;
+		a = top_stack(a);
+		b = top_stack(b);
+		return ((b->index + 1)%mod == a->index);
 	}
 	return (0);
 }
 
-int	top_second_in_order(t_stack *A)
+int	top_second_in_order(t_stack *a)
 {
 	int	mod;
 
-	if (A && A->next)
+	if (a && a->next)
 	{
-		A = top_stack(A);
-		mod = A->index_max + 1;
-		return ((A->index + 1) % mod == A->next->index);
+		a = top_stack(a);
+		mod = a->index_max + 1;
+		return ((a->index + 1) % mod == a->next->index);
 	}
 	return (0);
 }
 
-int	top_bottom_in_order(t_stack *A)
+int	top_bottom_in_order(t_stack *a)
 {
 	int	mod;
 	t_stack *top;
 	t_stack *bottom;
 
-	if (A && A->next)
+	if (a && a->next)
 	{
 
-		mod = A->index_max + 1;
-		top = top_stack(A);
-		bottom = bottom_stack(A);
+		mod = a->index_max + 1;
+		top = top_stack(a);
+		bottom = bottom_stack(a);
 		return ((bottom->index + 1) % mod == top->index);
 	}
 	return (0);

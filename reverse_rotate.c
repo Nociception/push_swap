@@ -39,21 +39,21 @@ void	reverserotate(t_stack **stack)
 	}
 }
 
-void	reverserotate_a(t_stack **A)
+void	reverserotate_a(t_stack **a)
 {
 	printf("rra\n");
-	reverserotate(A);
+	reverserotate(a);
 }
 
-void	reverserotate_b(t_stack **B)
+void	reverserotate_b(t_stack **b)
 {
 	printf("rrb\n");
-	reverserotate(B);
+	reverserotate(b);
 }
 
-void	reverserotate_both(t_stack **A, t_stack **B)
+void	reverserotate_both(t_stack **a, t_stack **b)
 {
 	printf("rrr\n");
-	reverserotate(A);
-	reverserotate(B);
+	reverserotate(a);
+	reverserotate(b);
 }

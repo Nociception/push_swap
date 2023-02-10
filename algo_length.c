@@ -1,20 +1,20 @@
 #include "push_swap.h"
 
-void    algo_length(t_stack **A, t_stack **B, t_stack *S, int len)
+void    algo_length(t_stack **a, t_stack **b, t_stack *s, int len)
 {
     int ssot;
 
-    ssot = sorted_final_stack_ontop(*A);
-    if (len == 2 && (*A)->index)
-        swap_a(A);
+    ssot = sorted_final_stack_ontop(*a);
+    if (len == 2 && (*a)->index)
+        swap_a(a);
     else if (len == 3 && !ssot)
-        algo_three(A);
+        algo_three(a);
     else if (len == 4 && !ssot)
-    	algo_four(A);
+    	algo_four(a);
 	else if (len == 5 && !ssot)
-		algo_five(A, B);
+		algo_five(a, b);
 	else if (len == 6 && !ssot)
-		algo_six(A, B);
+		algo_six(a, b);
 	else if (len > 6 && !ssot)
-		algo_beyond_seven(A, B, S);
+		algo_beyond_seven(a, b, s);
 }

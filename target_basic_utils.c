@@ -38,7 +38,7 @@ int	position_target_in_stack(int target, t_stack *stack)
 	return (-1);
 }
 
-void	get_target_location(int ht, t_target *target, t_stack *B)
+void	get_target_location(int ht, t_target *target, t_stack *b)
 {
 	if (target->stack == 'a')
 	{
@@ -49,14 +49,14 @@ void	get_target_location(int ht, t_target *target, t_stack *B)
 	}
 	else if (target->stack == 'b')
 	{
-		if (position_target_in_stack(target->index, B) <= len_stack(B))
+		if (position_target_in_stack(target->index, b) <= len_stack(b))
 			target->location = 'u';
 		else
 			target->location = 'd';
 	}
 }
 
-void	intel_target(int ht, t_target *target, t_stack *A, t_stack *B)
+void	intel_target(int ht, t_target *target, t_stack *a, t_stack *b)
 {
 	if (ht <= 7)
 	{
@@ -68,11 +68,11 @@ void	intel_target(int ht, t_target *target, t_stack *A, t_stack *B)
 		target->index = ht + 1;
 		target->destination = 'd';
 	}
-	if (target_in_stack(target->index, A))
+	if (target_in_stack(target->index, a))
 		target->stack = 'a';
 	else
 		target->stack = 'b';
-	get_target_location(ht, target, B);
+	get_target_location(ht, target, b);
 }
 
 void	show_target_details(t_target *target)

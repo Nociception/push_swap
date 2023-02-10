@@ -45,21 +45,21 @@ void	swap(t_stack **stack)
 	}
 }
 
-void	swap_a(t_stack **A)
+void	swap_a(t_stack **a)
 {
 	printf("sa\n");
-	swap(A);
+	swap(a);
 }
 
-void	swap_b(t_stack **B)
+void	swap_b(t_stack **b)
 {
 	printf("sb\n");
-	swap(B);
+	swap(b);
 }
 
-void	swap_both(t_stack **A, t_stack **B)
+void	swap_both(t_stack **a, t_stack **b)
 {
 	printf("ss\n");
-	swap(A);
-	swap(B);
+	swap(a);
+	swap(b);
 }

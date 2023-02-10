@@ -12,29 +12,29 @@
 
 #include "push_swap.h"
 
-void    algo_three(t_stack **A)
+void    algo_three(t_stack **a)
 {
     int first;
     int second;
     int third;
 
-    first = (*A)->index;
-    second = (*A)->next->index;
-    third = (*A)->next->next->index;
+    first = (*a)->index;
+    second = (*a)->next->index;
+    third = (*a)->next->next->index;
     if (first == 1 && second == 0 && third == 2)
-        swap_a(A);
+        swap_a(a);
     else if (first == 1 && second == 2 && third == 0)
-        reverserotate_a(A);
+        reverserotate_a(a);
     else if (first == 2 && second == 0 && third == 1)
-        rotate_a(A);
+        rotate_a(a);
     else if (first == 0 && second == 2 && third == 1)
     {
-        swap_a(A);
-        rotate_a(A);
+        swap_a(a);
+        rotate_a(a);
     }
     else if (first == 2 && second == 1 && third == 0)
     {
-        swap_a(A);
-        reverserotate_a(A);
+        swap_a(a);
+        reverserotate_a(a);
     }
 }

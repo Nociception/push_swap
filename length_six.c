@@ -1,53 +1,53 @@
 #include "push_swap.h"
 
-static void	moves_tt_dneighbors(t_stack **A, t_stack **B)
+static void	moves_tt_dneighbors(t_stack **a, t_stack **b)
 {
-	if (*A && *B)
+	if (*a && *b)
 	{
-		push_a(A, B);
-		if (!top_second_in_order(*A))
-			swap_a(A);
-		ra_twice_if_necessary(A);
+		push_a(a, b);
+		if (!top_second_in_order(*a))
+			swap_a(a);
+		ra_twice_if_necessary(a);
 	}
 }
 
-static void	moves_ts_direct_neighbors(t_stack **A, t_stack *B)
+static void	moves_ts_direct_neighbors(t_stack **a, t_stack *b)
 {
-	if (*A && (*A)->next)
+	if (*a && (*a)->next)
 	{
-		if (!top_second_in_order(*A))
+		if (!top_second_in_order(*a))
 		{
-			swap_a(A);
-			if (both_tops_dneighbors(*A, B))
+			swap_a(a);
+			if (both_tops_dneighbors(*a, b))
 				return ;
 		}
-		ra_twice_if_necessary(A);
+		ra_twice_if_necessary(a);
 	}
 }
 
-static void	moves_tb_direct_neighbors(t_stack **A)
+static void	moves_tb_direct_neighbors(t_stack **a)
 {
-	if (*A)
+	if (*a)
 	{
-		if (!top_bottom_in_order(*A))
+		if (!top_bottom_in_order(*a))
 		{
-			reverserotate_a(A);
-			swap_a(A);
-			ra_twice_if_necessary(A);
+			reverserotate_a(a);
+			swap_a(a);
+			ra_twice_if_necessary(a);
 		}
-		rotate_a(A);
+		rotate_a(a);
 	}
 	
 }
 
-int	peer_in_order(t_stack *A, int x, int y)
+int	peer_in_order(t_stack *a, int x, int y)
 {
 	int	index_max;
 	int range;
 
-	if (A)
+	if (a)
 	{
-		index_max = A->index_max;
+		index_max = a->index_max;
 		if ((x == 0 && y == index_max) || (x == index_max && y == 0))
 			return (1);
 		range = abs_val(x - y);
@@ -57,7 +57,7 @@ int	peer_in_order(t_stack *A, int x, int y)
 	return (0);
 }
 
-static int	peer_peer_peer(t_stack *A)
+static int	peer_peer_peer(t_stack *a)
 {
 	int first_peer;
 	int second_peer;
@@ -65,72 +65,72 @@ static int	peer_peer_peer(t_stack *A)
 	int second_third;
 	int fourth_fifth;
 
-	if (len_stack(A) == 6)
+	if (len_stack(a) == 6)
 	{
-		A = top_stack(A);
-		first_peer = peer_in_order(A, A->index, A->next->index);
-		A = A->next->next;
-		second_third = peer_in_order(A, A->precedent->index, A->index);
-		second_peer = peer_in_order(A, A->index, A->next->index);
-		A = A->next->next;
-		fourth_fifth = peer_in_order(A, A->precedent->index, A->index);
-		third_peer = peer_in_order(A, A->index, A->next->index);
+		a = top_stack(a);
+		first_peer = peer_in_order(a, a->index, a->next->index);
+		a = a->next->next;
+		second_third = peer_in_order(a, a->precedent->index, a->index);
+		second_peer = peer_in_order(a, a->index, a->next->index);
+		a = a->next->next;
+		fourth_fifth = peer_in_order(a, a->precedent->index, a->index);
+		third_peer = peer_in_order(a, a->index, a->next->index);
 		return (first_peer && second_peer && third_peer && !second_third && !fourth_fifth);
 	}
 	return (0);
 }
 
-static void	moves_ppp(t_stack **A, t_stack **B)
+static void	moves_ppp(t_stack **a, t_stack **b)
 {
-	if (*A && (*A)->next)
+	if (*a && (*a)->next)
 	{
-		push_b(A,B);
-		push_b(A,B);
-		rotate_a(A);
-		rotate_a(A);
-		push_a(A,B);
-		push_a(A,B);
+		push_b(a,b);
+		push_b(a,b);
+		rotate_a(a);
+		rotate_a(a);
+		push_a(a,b);
+		push_a(a,b);
 	}
 }
 
-int	top_second_ms_dneighbors(t_stack *A, t_stack *B)
+int	top_second_ms_dneighbors(t_stack *a, t_stack *b)
 {
-	if (A && B && B->next)
+	if (a && b && b->next)
 	{
-		A = top_stack(A);
-		B = (top_stack(B))->next;
-		return (direct_neighbors(A->index, B->index, A->index_max));
-	}
-	return (0);
-}
-
-void	moves_ts_ms_dneighbors(t_stack **B)
-{
-	if (*B && (*B)->next)
-	{
-		*B = top_stack(*B);
-		swap_b(B);
-	}
-}
-
-int	second_second_ms_dneighbors(t_stack *A, t_stack *B)
-{
-	if (A && A->next && B && B->next)
-	{
-		A = (top_stack(A))->next;
-		B = (top_stack(B))->next;
-		return (direct_neighbors(A->index, B->index, A->index_max));
+		a = top_stack(a);
+		b = (top_stack(b))->next;
+		return (direct_neighbors(a->index, b->index, a->index_max));
 	}
 	return (0);
 }
 
-void	moves_ss_ms_dneighbors(t_stack **A, t_stack **B)
+void	moves_ts_ms_dneighbors(t_stack **b)
 {
-	if (*A && (*A)->next && *B && (*B)->next)
+	if (*b && (*b)->next)
 	{
-		*A = top_stack(*A);
-		*B = top_stack(*B);
-		swap_both(A, B);
+		*b = top_stack(*b);
+		swap_b(b);
+	}
+}
+
+int	second_second_ms_dneighbors(t_stack *a, t_stack *b)
+{
+	if (a && a->next && b && b->next)
+	{
+		a = (top_stack(a))->next;
+		b = (top_stack(b))->next;
+		return (direct_neighbors(a->index, b->index, a->index_max));
+	}
+	return (0);
+}
+
+void	moves_ss_ms_dneighbors(t_stack **a, t_stack **b)
+{
+	if (*a && (*a)->next && *b && (*b)->next)
+	{
+		*a = top_stack(*a);
+		*b = top_stack(*b);
+		swap_both(a, b);
 	}
 }
 
@@ -139,13 +139,13 @@ tant que (pile non triee)
 {
 	si linked_unsorted_stack (composee donc de sequence ordonnees)
 		reperer la sequence la plus courte
-		la push vers B
-		reperer la tete de la sequence sur laquelle push le top de B
-		extraire cette tete au top de A
-		push la sequence de B sur A
+		la push vers b
+		reperer la tete de la sequence sur laquelle push le top de b
+		extraire cette tete au top de a
+		push la sequence de b sur a
 	si bottomA ordonne avec topB
 		pa
-	si top ordonne avec top B
+	si top ordonne avec top b
 		pa
 	si top voisin de secondB
 		sb
@@ -164,28 +164,28 @@ placer la pile triee
 */
 
 
-void algo_six(t_stack **A, t_stack **B)
+void algo_six(t_stack **a, t_stack **b)
 {
-	if (*A)
+	if (*a)
 	{
-		while (!sorted_final_stack(*A))
+		while (!sorted_final_stack(*a))
 		{
-			if (peer_peer_peer(*A))
-				moves_ppp(A, B);
-			else if (both_tops_dneighbors(*A, *B))
-				moves_tt_dneighbors(A, B);
-			else if (top_second_dneighbors(*A))
-				moves_ts_direct_neighbors(A, *B);
-			else if (top_bottom_dneighbors(*A))
-				moves_tb_direct_neighbors(A);
-			else if (top_second_ms_dneighbors(*A, *B))
-				moves_ts_ms_dneighbors(B);
-			else if (second_second_ms_dneighbors(*A, *B))
-				moves_ss_ms_dneighbors(A, B);
+			if (peer_peer_peer(*a))
+				moves_ppp(a, b);
+			else if (both_tops_dneighbors(*a, *b))
+				moves_tt_dneighbors(a, b);
+			else if (top_second_dneighbors(*a))
+				moves_ts_direct_neighbors(a, *b);
+			else if (top_bottom_dneighbors(*a))
+				moves_tb_direct_neighbors(a);
+			else if (top_second_ms_dneighbors(*a, *b))
+				moves_ts_ms_dneighbors(b);
+			else if (second_second_ms_dneighbors(*a, *b))
+				moves_ss_ms_dneighbors(a, b);
 			else
-				push_b(A, B);
+				push_b(a, b);
 		}
-	set_sorted_final_stack_ontop(A);
+	set_sorted_final_stack_ontop(a);
 	}
 }
 
@@ -197,15 +197,15 @@ peerpeerpeer :
 
 5 3 2 6 1 4 provoque des mouvements a la con
 2 3 1 6 4 5 provoque une boucle infinie (pattern des mouvements peerpeerpeer detecte)
-1     4     6     2     5     3   pose un probleme (resolu avec la recherche chez le second de B)
+1     4     6     2     5     3   pose un probleme (resolu avec la recherche chez le second de b)
 2 6 1 3 5 4
 
 Tant que la pile n'est pas triée
   si peerpeerpeer
     pb
     pb
-	si le top et le top de B sont voisins
-		si le top et le top de B sont ordonnés
+	si le top et le top de b sont voisins
+		si le top et le top de b sont ordonnés
 			pa
 		sinon
 			pa
@@ -221,7 +221,7 @@ Tant que la pile n'est pas triée
 			sa
       ra
 		ra
-  si le top et le second de B sont voisins
+  si le top et le second de b sont voisins
     sb
     pa
 	sinon

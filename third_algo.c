@@ -1,117 +1,117 @@
 #include "push_swap.h"
 
-int	only_twelve_first(t_stack *A)
+int	only_twelve_first(t_stack *a)
 {
-	A = top_stack(A);
-	while (A)
+	a = top_stack(a);
+	while (a)
 	{
-		if (A->index >= 12)
+		if (a->index >= 12)
 			return (0);
-		A = A->next;
+		a = a->next;
 	}
 	return (1);
 }
 
-int	stargets_in_B(t_stack *B, int mean_left)
+int	stargets_in_B(t_stack *b, int mean_left)
 {
-	while (B)
+	while (b)
 	{
-		if (B->index <= mean_left)
+		if (b->index <= mean_left)
 			return (1);
-		B = B->next;
+		b = b->next;
 	}
 	return (0);
 }
 
-void purge_after_twelve(t_stack **A, t_stack **B)
+void purge_after_twelve(t_stack **a, t_stack **b)
 {
 	int	mean_left;
 
-	mean_left = mean_two_positive_numbers(12, (*A)->initial_index_max);
-	*A = top_stack(*A);
-	*B = top_stack(*B);
-	while (!only_twelve_first(*A))
+	mean_left = mean_two_positive_numbers(12, (*a)->initial_index_max);
+	*a = top_stack(*a);
+	*b = top_stack(*b);
+	while (!only_twelve_first(*a))
 	{
-		if ((*A)->index >= 12)
+		if ((*a)->index >= 12)
 		{
-			push_b(A, B);
-			if ((*B)->index > mean_left && stargets_in_B(*B, mean_left))
+			push_b(a, b);
+			if ((*b)->index > mean_left && stargets_in_B(*b, mean_left))
 			{
-				if ((*A)->index <= 11)
-					rotate_both(A, B);
+				if ((*a)->index <= 11)
+					rotate_both(a, b);
 				else
-					rotate_b(B);
+					rotate_b(b);
 			}
 		}
 		else
-			rotate_a(A);
+			rotate_a(a);
 	}
 }
 
-int	only_three_to_eight(t_stack *A)
+int	only_three_to_eight(t_stack *a)
 {
-	A = top_stack(A);
-	while (A)
+	a = top_stack(a);
+	while (a)
 	{
-		if (A->index <= 2 || A->index >= 9)
+		if (a->index <= 2 || a->index >= 9)
 			return (0);
-		A = A->next;
+		a = a->next;
 	}
 	return (1);
 }
 
-int	only_six_seven_eight(t_stack *A)
+int	only_six_seven_eight(t_stack *a)
 {
-	A = top_stack(A);
-	while (A)
+	a = top_stack(a);
+	while (a)
 	{
-		if (A->index <= 5 || A->index >= 9)
+		if (a->index <= 5 || a->index >= 9)
 			return (0);
-		A = A->next;
+		a = a->next;
 	}
 	return (1);
 }
 
-void    last_purge(t_stack **A, t_stack **B)
+void    last_purge(t_stack **a, t_stack **b)
 {
-	*A = top_stack(*A);
-	while (!only_three_to_eight(*A))
+	*a = top_stack(*a);
+	while (!only_three_to_eight(*a))
 	{
-		if ((*A)->index >= 3 && (*A)->index <= 8)
-			rotate_a(A);
+		if ((*a)->index >= 3 && (*a)->index <= 8)
+			rotate_a(a);
 		else
-			push_b(A, B);
+			push_b(a, b);
 	}
-	while (!only_six_seven_eight(*A))
+	while (!only_six_seven_eight(*a))
 	{
-		if ((*A)->index >= 6 && (*A)->index <= 8)
-			rotate_a(A);
+		if ((*a)->index >= 6 && (*a)->index <= 8)
+			rotate_a(a);
 		else
-			push_b(A, B);
+			push_b(a, b);
 	}
 }
 
-void	decrease_indexes(t_stack *A)
+void	decrease_indexes(t_stack *a)
 {
-	A = top_stack(A);
-	while (A)
+	a = top_stack(a);
+	while (a)
 	{
-		A->index -= 6;
-		A = A->next;
+		a->index -= 6;
+		a = a->next;
 	}
 }
 
-void	increase_indexes(t_stack *A)
+void	increase_indexes(t_stack *a)
 {
-	A = top_stack(A);
-	while (A)
+	a = top_stack(a);
+	while (a)
 	{
-		A->index += 6;
-		A = A->next;
+		a->index += 6;
+		a = a->next;
 	}
 }
 
-t_target	*best_target(t_stack *A, t_stack *B, int head, int tail)
+t_target	*best_target(t_stack *a, t_stack *b, int head, int tail)
 {
 	t_target *above_head;
 	t_target *below_tail;
@@ -122,49 +122,49 @@ t_target	*best_target(t_stack *A, t_stack *B, int head, int tail)
 	below_tail = new_target();
 	shortest_to_ah = 0;
 	shortest_to_bt = 0;
-	intel_target(head, above_head, A, B);
-	intel_target(tail, below_tail, A, B);
-	if (target_in_stack(above_head->index, A))
-		shortest_to_ah = shortest_way_to_target(above_head->index, A);
+	intel_target(head, above_head, a, b);
+	intel_target(tail, below_tail, a, b);
+	if (target_in_stack(above_head->index, a))
+		shortest_to_ah = shortest_way_to_target(above_head->index, a);
 	else
-		shortest_to_ah = shortest_way_to_target(above_head->index, B);
-	if (target_in_stack(below_tail->index, A))
-		shortest_to_bt = shortest_way_to_target(below_tail->index, A);
+		shortest_to_ah = shortest_way_to_target(above_head->index, b);
+	if (target_in_stack(below_tail->index, a))
+		shortest_to_bt = shortest_way_to_target(below_tail->index, a);
 	else
-		shortest_to_bt = shortest_way_to_target(below_tail->index, B);
+		shortest_to_bt = shortest_way_to_target(below_tail->index, b);
 	if (abs_val(shortest_to_ah) <= abs_val(shortest_to_bt))
 		return (above_head);
 	return (below_tail);
 }
 
-void plug_nine_lucky(t_target *target, t_stack **A, t_stack **B, int *ht)
+void plug_nine_lucky(t_target *target, t_stack **a, t_stack **b, int *ht)
 {
 	if (target->stack == 'b')
 	{
 		if (target->destination == 'u')
 		{
-			extract_target_ontop(*ht, A);
-			extract_target_ontop(target->index, B);
-			push_a(A, B);
+			extract_target_ontop(*ht, a);
+			extract_target_ontop(target->index, b);
+			push_a(a, b);
 		}
 		else if (target->destination == 'd')
 		{
-			extract_target_ontop(*ht, A);
-			rotate_a(A);
-			extract_target_ontop(target->index, B);
-			push_a(A, B);
-			rotate_a(A);
+			extract_target_ontop(*ht, a);
+			rotate_a(a);
+			extract_target_ontop(target->index, b);
+			push_a(a, b);
+			rotate_a(a);
 		}
 	}
 	else if (target->stack == 'a' && target->location == 'u')
 	{
 
-		extract_target_ontop(target->index, A);
-		push_b(A, B);
-		extract_target_ontop(*ht, A);
-		push_a(A,B);
+		extract_target_ontop(target->index, a);
+		push_b(a, b);
+		extract_target_ontop(*ht, a);
+		push_a(a,b);
 		if (target->destination == 'd')
-			rotate_a(A);
+			rotate_a(a);
 	}
 	if (target->index > *ht)
 		(*ht)++;
@@ -174,85 +174,84 @@ void plug_nine_lucky(t_target *target, t_stack **A, t_stack **B, int *ht)
 
 /*
 
-	//tant que A n est pas ordonnee de 0 a 11
+	//tant que a n est pas ordonnee de 0 a 11
 		//determiner la cible la plus proche
 		l'extraire
 		les produits d'extraction :
-			si la cible choisie est dans le haut de B
-				si la cible choisie est a destination du top de A
+			si la cible choisie est dans le haut de b
+				si la cible choisie est a destination du top de a
 					prise rendue accessible
-					produits au bottom de A
-				si la cible choisie est a destination du bottom de A
+					produits au bottom de a
+				si la cible choisie est a destination du bottom de a
 					prise rendue accessible
-					produits au top de A
+					produits au top de a
 
-		//	si la cible choisie est dans le haut de A
-				si la cible choisie est a destination du top de A
-					produits au bottom de A
-					la cible est push sur B durant le deblayage,
-						puis repush sur A une fois celui-ci termine
-				si la cible choisie est a destination du bottom de A
+		//	si la cible choisie est dans le haut de a
+				si la cible choisie est a destination du top de a
+					produits au bottom de a
+					la cible est push sur b durant le deblayage,
+						puis repush sur a une fois celui-ci termine
+				si la cible choisie est a destination du bottom de a
 					prise rendue accessible
-					produits au top de B
+					produits au top de b
 			
-		//	si la cible choisie est dans le bas de A
-				si la cible choisie est a destination du top de A
+		//	si la cible choisie est dans le bas de a
+				si la cible choisie est a destination du top de a
 					prise rendue accessible
-					produits au top de B
-				si la cible choisie est a destination du bottom de A
-					produits au top de A
-					la cible est push sur B durant le deblayage,
-						puis repush sur A une fois celui-ci termine
+					produits au top de b
+				si la cible choisie est a destination du bottom de a
+					produits au top de a
+					la cible est push sur b durant le deblayage,
+						puis repush sur a une fois celui-ci termine
 	
 }
 */
 
-void    nine_lucky(t_stack **A, t_stack **B, t_stack *S)
+void    nine_lucky(t_stack **a, t_stack **b, t_stack *s)
 {
 	t_target	*btarget;
 	int	head;
 	int	tail;
 
-	(void)S; // penser a virer les S de toute la part 1
+	(void)s; // penser a virer les s de toute la part 1
 	btarget = NULL;
 	head = 6;
 	tail = 8;
 	while (head || tail < 11) 
 	// ainsi, best target n'est appelee que si head > 0 et tail < 11
 	{
-		btarget = best_target(*A, *B, head, tail);
+		btarget = best_target(*a, *b, head, tail);
 		if (btarget->index < head)
 		{
-			plug_nine_lucky(btarget, A, B, &head);
+			plug_nine_lucky(btarget, a, b, &head);
 		}
 		else
 		{
-			plug_nine_lucky(btarget, A, B, &tail);
+			plug_nine_lucky(btarget, a, b, &tail);
 		}
 	}
 }
 
 
-void    part_one(t_stack **A, t_stack **B, t_stack *S)
+void    part_one(t_stack **a, t_stack **b, t_stack *s)
 {
-    purge_after_twelve(A, B);
-	showABS(*A, *B, S, len_stack(S));
-	last_purge(A, B);
-    decrease_indexes(*A);
-	algo_three(A);
-    increase_indexes(*A);
-    nine_lucky(A, B, S);
+    purge_after_twelve(a, b);
+	last_purge(a, b);
+    decrease_indexes(*a);
+	algo_three(a);
+    increase_indexes(*a);
+    nine_lucky(a, b, s);
 }
 
 /*------------------------FONCTIONNEL---------------------------------*/
 
-void	initialize_priority(int *priority, t_stack *A, t_stack *B)
+void	initialize_priority(int *priority, t_stack *a, t_stack *b)
 {
 	int bottom_a;
 
-	if (len_stack(B) >= 2)
+	if (len_stack(b) >= 2)
 	{
-		bottom_a = bottom_stack(A)->index;
+		bottom_a = bottom_stack(a)->index;
 		priority[0] = bottom_a + 1;
 		priority[1] = priority[0] + 1;
 	}
@@ -260,63 +259,63 @@ void	initialize_priority(int *priority, t_stack *A, t_stack *B)
 
 /*
 
-int *initialize_secondary(int *secondary, t_stack *B)
+int *initialize_secondary(int *secondary, t_stack *b)
 {
 
 }
 
-void    lists_update_part_two(int *prio[], int *sec[], t_stack *A, t_stack *B)
+void    lists_update_part_two(int *prio[], int *sec[], t_stack *a, t_stack *b)
 {
 
 }
 */
 
-void    part_two(t_stack **A, t_stack **B)
+void    part_two(t_stack **a, t_stack **b)
 {
     int priority[2];
     //int *secondary;
     //int best_choice;
 
-    initialize_priority(priority, *A, *B);
+    initialize_priority(priority, *a, *b);
 	printf("part_two : priority[0] = %d ; priority[1] = %d\n", priority[0], priority[1]);
 	/*
-    initialize_secondary(secondary,*B);
+    initialize_secondary(secondary,*b);
     while (priority[0] != -1)
     {
-        best_choice = best_priority_choice(priority, secondary, *A, *B);
-        extract_priority_ontop(best_choice, secondary, A, B);
-        send_and_plug_priority(best_choice, A, B);
-        lists_update(priority, secondary, *B);
-        (&priority, &secondary, *A, *B);
+        best_choice = best_priority_choice(priority, secondary, *a, *b);
+        extract_priority_ontop(best_choice, secondary, a, b);
+        send_and_plug_priority(best_choice, a, b);
+        lists_update(priority, secondary, *b);
+        (&priority, &secondary, *a, *b);
     }
 	*/
 }
 /*
-void    part_three(t_stack **A, t_stack **B)
+void    part_three(t_stack **a, t_stack **b)
 {
 
 }
 
-void    part_four(t_stack **A, t_stack **B)
+void    part_four(t_stack **a, t_stack **b)
 {
 
 }
 
-void    part_five(t_stack **A, t_stack **B)
+void    part_five(t_stack **a, t_stack **b)
 {
 
 }
 */
-void    algo_beyond_seven(t_stack **A, t_stack **B, t_stack *S)
+void    algo_beyond_seven(t_stack **a, t_stack **b, t_stack *s)
 {
-	part_one(A, B, S);
-    part_two(A, B);
+	part_one(a, b, s);
+    part_two(a, b);
 	/*
-    while (!sorted_final_stack(*A))
+    while (!sorted_final_stack(*a))
     {
-        part_three(A, B);
-        part_four(A, B);
-        part_five(A, B);
+        part_three(a, b);
+        part_four(a, b);
+        part_five(a, b);
     }
 	*/
 }

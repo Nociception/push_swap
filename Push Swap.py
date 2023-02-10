@@ -141,29 +141,7 @@ b = gen_stack(1)
 s = list(a)
 s.sort()
 
-
+def print_stack_line(l):
+    for k in l:
+        print(k, end= ' ')
             
-"""
-def show_stacks2(l1, l2):
-    diff = abs(len(l1) - len(l2))
-    c = -1
-    if len(l1) > len(l2) :
-        for k in range(len(l1)) :
-            c += 1
-            if c >= diff :
-                print(l1[k], end='')
-                print(' ', end = '')
-                print(l2[c - diff])
-            else :
-                print(l1[k])
-    elif len(l1) == len(l2) :
-        for k,j in zip(l1,l2):
-            print(k, j)
-    else :
-        for k in range(len(l2)) :
-            c += 1
-            print(l2[k])
-            if c >= diff :
-                print(' ')
-                print(l1[c - diff])
-"""

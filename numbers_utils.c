@@ -10,6 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+atoi plus précis :
+    passer tous les blanks
+    passer le signe :
+        si autre chose que '-' ou '+' :
+            erreur
+        si '-' :
+            neg = -1
+    passer les zéros :
+        si autre chose qu'un chiffre :
+            erreur
+        si autre chose qu'un zéro (à ce stade, il n'y a plus que des chiffres) :
+            le nombre commence à etre généré
+*/
+
 int ft_atoi(char *s)
 {
     int n;

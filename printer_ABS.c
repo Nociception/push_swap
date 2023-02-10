@@ -16,36 +16,36 @@ char *spaces(int nb)
     return (blanks);
 }
 
-void    showABS(t_stack *A, t_stack *B, t_stack *S, int len)
+void    show_abs(t_stack *a, t_stack *b, t_stack *s, int len)
 {
-    int lenA;
-    int lenB;
+    int len_a;
+    int len_b;
 
-    lenA = len_stack(A);
-    lenB = len_stack(B);
+    len_a = len_stack(a);
+    len_b = len_stack(b);
     printf("----------------------------------------------\n");
-    while (S)
+    while (s)
     {
-        if (lenA == len)
+        if (len_a == len)
         {
-            printf("%d%s", A->index, spaces(A->spaces)); // remplace provisoirement par index
-            lenA--;
-            A = A->next;
+            printf("%d%s", a->index, spaces(a->spaces)); // remplace provisoirement par index
+            len_a--;
+            a = a->next;
         }
         else
             printf("               ");
-        if (lenB == len)
+        if (len_b == len)
         {
-            printf("%d%s", B->index, spaces(B->spaces)); // remplace provisoirement par index
-            lenB--;
-            B = B->next;
+            printf("%d%s", b->index, spaces(b->spaces)); // remplace provisoirement par index
+            len_b--;
+            b = b->next;
         }
         else
             printf("               ");
-        printf("%d\n", S->index); // remplace provisoirement par index
+        printf("%d\n", s->index); // remplace provisoirement par index
         len--;
-        S = S->next;
+        s = s->next;
     }
-    printf("A              B              S\n");
+    printf("a              b              s\n");
     printf("----------------------------------------------\n");
 }

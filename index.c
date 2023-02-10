@@ -12,42 +12,44 @@
 
 #include "push_swap.h"
 
-void    index_on_S(t_stack *S, int len)
+void    index_on_s(t_stack *s, int len)
 {
     int index;
 
     index = 0;
-    S = top_stack(S);
-    while (S)
+    s = top_stack(s);
+    while (s)
     {
-        S->index = index;
-        S->index_max = len - 1;
-        S->initial_index_max = len - 1;
+        s->index = index;
+        s->index_max = len - 1;
+        s->initial_index_max = len - 1;
         index++;
-        S = S->next;
+        s = s->next;
     }
 }
 
-int get_nb_index_in_S(int Anb, t_stack *S)
+int get_nb_index_in_s(int a_nb, t_stack *s)
 {
-    S = top_stack(S);
-    while (S)
+    s = top_stack(s);
+    while (s)
     {
-        if (S->nb == Anb)
-            return (S->index);
-        S = S->next;
+        if (s->nb == a_nb)
+            return (s->index);
+        s = s->next;
     }
     return (-1);
 }
 
-void    index_on_A(t_stack *A, t_stack *S)
+void    index_on_a(t_stack *a, t_stack *s)
 {
-    A = top_stack(A);
-    while (A)
+    a = top_stack(a);
+    while (a)
     {
-        A->index = get_nb_index_in_S(A->nb, S);
-        A->index_max = S->index_max;
-        A->initial_index_max = S->initial_index_max;
-        A = A->next;
+        a->index = get_nb_index_in_s(a->nb, s);
+        if (a->index == 0)
+            a->move = new_move();
+        a->index_max = s->index_max;
+        a->initial_index_max = s->initial_index_max;
+        a = a->next;
     }
 }

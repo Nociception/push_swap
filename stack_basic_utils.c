@@ -19,7 +19,8 @@ void    initialize_stack_element(t_stack *element)
     element->next = NULL;
     element->precedent = NULL;
     element->spaces = -1;
-	element->a_or_b = 'A';
+	element->a_or_b = 'a';
+    element->move = NULL;
 }
 
 t_stack *add_front(t_stack *stack, int nb)

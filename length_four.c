@@ -12,66 +12,66 @@
 
 #include "push_swap.h"
 
-int sorted_final_stack(t_stack *A)
+int sorted_final_stack(t_stack *a)
 {
 	int	i;
 	int	mod;
 
-	if (A)
+	if (a)
 	{
 		i = 0;
-		mod = A->index_max + 1;
-		while (++i <= mod && A->next && (A->index + 1)%mod == A->next->index)
-			A = A->next;
-		if (i == mod && !(A->next))
+		mod = a->index_max + 1;
+		while (++i <= mod && a->next && (a->index + 1)%mod == a->next->index)
+			a = a->next;
+		if (i == mod && !(a->next))
 			return (1);
 	}
 	return (0);
 }
 
-void	set_sorted_final_stack_ontop(t_stack **A)
+void	set_sorted_final_stack_ontop(t_stack **a)
 {
-	if (*A && sorted_final_stack(*A))
-		extract_target_ontop(0, A);
+	if (*a && sorted_final_stack(*a))
+		extract_target_ontop(0, a);
 }
 
-int	sorted_final_stack_ontop(t_stack *A)
+int	sorted_final_stack_ontop(t_stack *a)
 {
-	return (A && sorted_final_stack(A) && !(top_stack(A)->index));
+	return (a && sorted_final_stack(a) && !(top_stack(a)->index));
 }
 
-static	void	moves_tb_direct_neighbors(t_stack **A)
+static	void	moves_tb_direct_neighbors(t_stack **a)
 {
-	if (top_bottom_in_order(*A))
-		rotate_a(A);
+	if (top_bottom_in_order(*a))
+		rotate_a(a);
 	else
 	{
-		reverserotate_a(A);
-		swap_a(A);
+		reverserotate_a(a);
+		swap_a(a);
 	}
 }
 
-static	void	moves_ts_direct_neighbors(t_stack **A)
+static	void	moves_ts_direct_neighbors(t_stack **a)
 {
-	if (top_second_in_order(*A))
-		ra_twice_if_necessary(A);
+	if (top_second_in_order(*a))
+		ra_twice_if_necessary(a);
 	else
-		swap_a(A);
+		swap_a(a);
 }
 
-void	algo_four(t_stack **A)
+void	algo_four(t_stack **a)
 {
-	if (*A)
+	if (*a)
 	{
-		while (!sorted_final_stack(*A))
+		while (!sorted_final_stack(*a))
 		{
-			if (top_second_dneighbors(*A))
-				moves_ts_direct_neighbors(A);
-			else if (top_bottom_dneighbors(*A))
-				moves_tb_direct_neighbors(A);
+			if (top_second_dneighbors(*a))
+				moves_ts_direct_neighbors(a);
+			else if (top_bottom_dneighbors(*a))
+				moves_tb_direct_neighbors(a);
 			else
-				rotate_a(A);
+				rotate_a(a);
 		}
-		set_sorted_final_stack_ontop(A);
+		set_sorted_final_stack_ontop(a);
 	}
 }

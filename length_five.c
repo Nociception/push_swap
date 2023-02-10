@@ -1,69 +1,69 @@
 #include "push_swap.h"
 
-void	ra_twice_if_necessary(t_stack **A)
+void	ra_twice_if_necessary(t_stack **a)
 {
-	if (*A && (*A)->next)
+	if (*a && (*a)->next)
 	{
-		rotate_a(A);
-		if (!sorted_final_stack(*A))
-			rotate_a(A);
+		rotate_a(a);
+		if (!sorted_final_stack(*a))
+			rotate_a(a);
 	}
 }
 
-static void	moves_tt_dneighbors(t_stack **A, t_stack **B)
+static void	moves_tt_dneighbors(t_stack **a, t_stack **b)
 {
-	if (*A && *B)
+	if (*a && *b)
 	{
-		push_a(A, B);
-		if (!top_second_in_order(*A))
-			swap_a(A);
-		ra_twice_if_necessary(A);
+		push_a(a, b);
+		if (!top_second_in_order(*a))
+			swap_a(a);
+		ra_twice_if_necessary(a);
 	}
 }
 
-static void	moves_ts_direct_neighbors(t_stack **A, t_stack *B)
+static void	moves_ts_direct_neighbors(t_stack **a, t_stack *b)
 {
-	if (*A && (*A)->next)
+	if (*a && (*a)->next)
 	{
-		if (!top_second_in_order(*A))
+		if (!top_second_in_order(*a))
 		{
-			swap_a(A);
-			if (both_tops_dneighbors(*A, B))
+			swap_a(a);
+			if (both_tops_dneighbors(*a, b))
 				return ;
 		}
-		ra_twice_if_necessary(A);
+		ra_twice_if_necessary(a);
 	}
 }
 
-static void	moves_tb_direct_neighbors(t_stack **A)
+static void	moves_tb_direct_neighbors(t_stack **a)
 {
-	if (*A)
+	if (*a)
 	{
-		if (!top_bottom_in_order(*A))
+		if (!top_bottom_in_order(*a))
 		{
-			reverserotate_a(A);
-			swap_a(A);
-			ra_twice_if_necessary(A);
+			reverserotate_a(a);
+			swap_a(a);
+			ra_twice_if_necessary(a);
 		}
-		rotate_a(A);
+		rotate_a(a);
 	}
 	
 }
 
-void	algo_five(t_stack **A, t_stack **B)
+void	algo_five(t_stack **a, t_stack **b)
 {
-	while (!sorted_final_stack(*A))
+	while (!sorted_final_stack(*a))
 	{
-		if (both_tops_dneighbors(*A, *B))
-			moves_tt_dneighbors(A, B);
-		else if (top_second_dneighbors(*A))
-			moves_ts_direct_neighbors(A, *B);
-		else if (top_bottom_dneighbors(*A))
-			moves_tb_direct_neighbors(A);
+		if (both_tops_dneighbors(*a, *b))
+			moves_tt_dneighbors(a, b);
+		else if (top_second_dneighbors(*a))
+			moves_ts_direct_neighbors(a, *b);
+		else if (top_bottom_dneighbors(*a))
+			moves_tb_direct_neighbors(a);
 		else
-			push_b(A, B);
+			push_b(a, b);
 	}
-	set_sorted_final_stack_ontop(A);
+	set_sorted_final_stack_ontop(a);
 }
 
 /*
