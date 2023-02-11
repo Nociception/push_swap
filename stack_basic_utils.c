@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_basic_utils.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/11 23:59:31 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/11 23:59:31 by nstoutze         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack *new_stack_element(void)
@@ -51,11 +63,11 @@ t_stack *array_to_stack(int *array, int len)
 
     len--;
     element = add_front(NULL, array[len]);
-    element->spaces = 15 - len_int(element->nb);
+    element->spaces = 15 - len_int(element->index); //element->nb passe en element->index
     while (--len >= 0)
     {
         element = add_front(element, array[len]);
-        element->spaces = 15 - len_int(element->nb);
+        element->spaces = 15 - len_int(element->index); //element->nb passe en element->index
     }
     return (element);
 }

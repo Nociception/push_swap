@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 20:50:14 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/10 23:29:40 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/12 00:13:31 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	reverserotate_a(t_stack **a, t_stack *b)
 		index_zero = index_stack(*a, b, 0);
 		add_back_move(index_zero->move, 'r', 'r', 'a');
 	}
-
 }
 
 void	reverserotate_b(t_stack *a, t_stack **b)
@@ -64,12 +63,11 @@ void	reverserotate_b(t_stack *a, t_stack **b)
 		index_zero = index_stack(a, *b, 0);
 		add_back_move(index_zero->move, 'r', 'r', 'b');
 	}
-
 }
 
 void	reverserotate_both(t_stack **a, t_stack **b)
 {
-	t_stack *index_zero;
+	t_stack	*index_zero;
 
 	if (*a && (*a)->next && *b && (*b)->next)
 	{

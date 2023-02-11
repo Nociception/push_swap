@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 20:46:55 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/10 21:19:58 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:43:26 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,40 @@ t_stack	*index_stack(t_stack *a, t_stack *b, int index)
 	if (b && target_in_stack(index, b))
 		return (get_element_index_in_stack(b, index));
 	return (NULL);
+}
+
+int	index_min_in_stack(t_stack *stack)
+{
+	int	min;
+
+	min = -1;
+	if (stack)
+	{
+		min = stack->index;
+		while (stack)
+		{
+			if (stack->index < min)
+				min = stack->index;
+			stack = stack->next;
+		}
+	}
+	return (min);
+}
+
+int	index_max_in_stack(t_stack *stack)
+{
+	int	max;
+
+	max = -1;
+	if (stack)
+	{
+		max = stack->index;
+		while (stack)
+		{
+			if (stack->index > max)
+				max = stack->index;
+			stack = stack->next;
+		}
+	}
+	return (max);
 }

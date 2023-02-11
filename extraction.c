@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extraction.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/11 23:57:21 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/11 23:57:21 by nstoutze         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int shortest_way_to_target(int target, t_stack *stack)
+int	shortest_way_to_target(int target, t_stack *stack)
 {
 	int	way;
-	int len;
+	int	len;
 
 	way = 0;
 	len = len_stack(stack);
@@ -16,7 +28,7 @@ int shortest_way_to_target(int target, t_stack *stack)
 			{
 				if (way <= len / 2)
 					return (way);
-				return (way - (len + 1)); 
+				return (way - (len + 1));
 			}
 			stack = stack->next;
 			way++;
@@ -51,7 +63,7 @@ void	extraction(int nb_rotate, t_stack **a, t_stack **b, char stack)
 
 void	extract_target_ontop(int target, t_stack **a, t_stack **b)
 {
-	int	nb_rotate;
+	int		nb_rotate;
 	char	stack;
 
 	if (target_in_stack(target, *a))
@@ -65,6 +77,20 @@ void	extract_target_ontop(int target, t_stack **a, t_stack **b)
 		stack = 'b';
 	}
 	extraction(nb_rotate, a, b, stack);
+}
+
+int	target_in_stack(int target, t_stack *stack)
+{
+	if (stack)
+	{
+		while (stack)
+		{
+			if (stack->index == target)
+				return (1);
+			stack = stack->next;
+		}
+	}
+	return (0);
 }
 
 /*
@@ -98,16 +124,3 @@ void	extract_target_ontop(int target, t_stack **stack)
 	}
 }
 */
-int	target_in_stack(int target, t_stack *stack)
-{
-	if (stack)
-	{
-		while (stack)
-		{
-			if (stack->index == target)
-				return (1);
-			stack = stack->next;
-		}
-	}
-	return (0);
-}

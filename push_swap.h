@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/11 23:59:07 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/11 23:59:07 by nstoutze         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -34,6 +46,13 @@ typedef struct	s_target
 	char	destination;
 } t_target;
 
+typedef struct s_stacks
+{
+	struct s_stack *a;
+	struct s_stack *b;
+} t_stacks;
+
+
 /*-----Algo length-----*/
 void                algo_length(t_stack **a, t_stack **b, t_stack *s, int len);
 
@@ -44,6 +63,8 @@ void                show_array(int *array, int len);
 int                 *copy_array(int *array, int len);
 int                 *sort_array(int *array, int len);
 int                 index_nb_in_array(int nb, int *array, int len);
+int	is_nb_in_array(int nb, int *array, int len_array);
+
 
 /*-----Extraction-----*/
 int	target_in_stack(int target, t_stack *stack);
@@ -56,6 +77,8 @@ int                 get_nb_index_in_s(int a_nb, t_stack *s);
 void                index_on_a(t_stack *a, t_stack *s);
 t_stack *get_element_index_in_stack(t_stack *stack, int index);
 t_stack	*index_stack(t_stack *a, t_stack *b, int index);
+int	index_min_in_stack(t_stack *stack);
+int	index_max_in_stack(t_stack *stack);
 
 /*-----Length 3-----*/
 void                algo_three(t_stack **a, t_stack *b);
@@ -108,6 +131,9 @@ int	abs_val(int n);
 int	ft_max(int x, int y);
 int	mean_two_positive_numbers(int x, int y);
 
+/*-----Part One-----*/
+void    part_one(t_stack **a, t_stack **b, t_stack *s);
+void    part_two(t_stack **a, t_stack **b, t_stack *s);
 
 
 /*-----Printer ABS-----*/
@@ -159,6 +185,9 @@ t_target *new_target(void);
 void initialize_target(t_target *target);
 void	intel_target(int index, t_target *target, t_stack *a, t_stack *b);
 void	show_target_details(t_target *target);
+int	stargets_in_b(t_stack *b, int mean_left);
+t_target	*best_target(t_stack *a, t_stack *b, int head, int tail);
+
 
 /*-----Third Algo-----*/
 int	only_twelve_first(t_stack *a);

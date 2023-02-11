@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 20:51:43 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/10 23:29:35 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/12 00:18:55 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ void	rotate(t_stack **stack)
 	t_stack	*second;
 	t_stack	*bottom;
 
-	top = NULL;
+	*stack = top_stack(*stack);
+	top = *stack;
 	second = NULL;
 	bottom = NULL;
-	if (*stack)
+	if (len_stack(*stack) == 2)
+		swap(stack);
+	else if (*stack)
 	{
-		top = top_stack(*stack);
 		if ((*stack)->next)
 		{
 			second = (*stack)->next;
@@ -58,7 +60,6 @@ void	rotate_a(t_stack **a, t_stack *b)
 		index_zero = index_stack(*a, b, 0);
 		add_back_move(index_zero->move, 'r', 'a', ' ');
 	}
-
 }
 
 void	rotate_b(t_stack *a, t_stack **b)
@@ -72,12 +73,11 @@ void	rotate_b(t_stack *a, t_stack **b)
 		index_zero = index_stack(a, *b, 0);
 		add_back_move(index_zero->move, 'r', 'b', ' ');
 	}
-
 }
 
 void	rotate_both(t_stack **a, t_stack **b)
 {
-	t_stack *index_zero;
+	t_stack	*index_zero;
 
 	if (*a && (*a)->next && *b && (*b)->next)
 	{

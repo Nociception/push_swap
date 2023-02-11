@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 21:02:20 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/10 23:33:31 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/12 00:12:49 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	push_a(t_stack **a, t_stack **b)
 {
 	t_stack	*index_zero;
 
-	if (*a && *b)
+	if (*b)
 	{
 		printf("pa\n");
 		push(b, a);
@@ -58,7 +58,7 @@ void	push_b(t_stack **a, t_stack **b)
 {
 	t_stack	*index_zero;
 
-	if (*a && *b)
+	if (*a)
 	{
 		printf("pb\n");
 		push(a, b);

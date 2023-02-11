@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   length_five.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/11 23:57:41 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/11 23:57:41 by nstoutze         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ra_twice_if_necessary(t_stack **a, t_stack *b)
@@ -47,7 +59,6 @@ static void	moves_tb_direct_neighbors(t_stack **a, t_stack *b)
 		}
 		rotate_a(a, b);
 	}
-	
 }
 
 void	algo_five(t_stack **a, t_stack **b)

@@ -86,3 +86,16 @@ int	index_nb_in_array(int nb, int *array, int len)
 	}
 	return (-1);
 }
+
+int	is_nb_in_array(int nb, int *array, int len_array)
+{
+	int	i;
+
+	i = -1;
+	while (++i < len_array)
+	{
+		if (array[i] == nb)
+			return (1);
+	}
+	return (0);
+}
