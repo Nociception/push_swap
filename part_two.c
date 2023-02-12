@@ -261,6 +261,10 @@ void    part_two(t_stack **a, t_stack **b, t_stack *s)
 		//show_abs(*a, *b, s, len_stack(s));
 		//show_abs(stacks->a, stacks->b, s, len_stack(s));
         extract_priority_part_two(best_choice, stacks, sec, len_sec);
+		/*
+		plutot que de grouper a et b dans stacks, grouper sec et len_sec dans
+		une structure, de maniere a ne retoucher que part_two, et non TOUT le code
+		*/
 		printf("part_two(boucle): best_choice extrait\n");
 		//show_abs(*a, *b, s, len_stack(s));
 		//show_abs(stacks->a, stacks->b, s, len_stack(s));
