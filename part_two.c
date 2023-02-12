@@ -89,48 +89,65 @@ int	harvest_score_from_top(int prio, int *secondary, int len_sec, t_stack *stack
 	return (score);
 }
 
-int	best_priority_choice(int *priority, int *secondary, int len_sec, t_stacks *stacks)
+int	best_priority_choice(int *prio, int *sec, int len_sec, t_stacks *stacks)
 {
 	t_stack	*stack_first;
 	t_stack	*stack_second;
 	int score_first;
 	int score_second;
 
-	if (priority[1] < 0)
-		return (priority [1]);
-	stack_first = which_stack(priority[0], stacks->a, stacks->b);
-	stack_second = which_stack(priority[1], stacks->a, stacks->b);
-	score_first = harvest_score_from_top(priority[0], secondary, len_sec, stack_first);
-	score_second = harvest_score_from_top(priority[1], secondary, len_sec, stack_second);
+	if (prio[1] < 0)
+		return (prio [0]);
+	stack_first = which_stack(prio[0], stacks->a, stacks->b);
+	stack_second = which_stack(prio[1], stacks->a, stacks->b);
+	score_first = harvest_score_from_top(prio[0], sec, len_sec, stack_first);
+	score_second = harvest_score_from_top(prio[1], sec, len_sec, stack_second);
 	if (score_first > score_second)
-		return (priority[1]);
-	return (priority[0]);
+		return (prio[1]);
+	return (prio[0]);
 }
 
-void	extract_priority_ontop_part_two(int best_choice, t_stack **a, t_stack **b)
-// avoir s'il est possible de la declarer en static pour raccourcir la ligne
+void	extract_prio_from_b_part_two(int bc, t_stacks *st, int *sec, int len_s)
 {
-	if (bottom_stack(*b)->index == best_choice)
-		rotate_b(*a, b);
-	else if (target_in_stack(best_choice, *a))
+	if (pos_index_in_stack(bc, st->b) <= (len_stack(st->b) / 2))
 	{
-		while ((*a)->index != best_choice)
+		while (top_stack(st->b)->index != bc)
 		{
-			*a = top_stack(*a);
-			push_b(a, b);
+			if (is_nb_in_array(top_stack(st->b)->index, sec, len_s))
+				push_a(&(st->a), &(st->b));
+			else
+				rotate_b(st->a, &(st->b));
 		}
 	}
-	else if (target_in_stack(best_choice, *b))
+	else
 	{
-		while ((*b)->index != best_choice)
+		while (top_stack(st->b)->index != bc)
 		{
-			*b = top_stack(*b);
-			push_a(a, b);
+			reverserotate_b(st->a, &(st->b));
+			if (is_nb_in_array(top_stack(st->b)->index, sec, len_s))
+				push_a(&(st->a), &(st->b));
 		}
 	}
 }
 
-void	update_priority_part_two(int best_choice, int *priority)
+void	extract_priority_part_two(int bc, t_stacks *st, int *sec, int len_sec)
+{
+	//printf("eppt : Entree\n");
+	if (target_in_stack(bc, st->b))
+	{
+		//printf("eppt : entre dans le if\n");
+		extract_prio_from_b_part_two(bc, st, sec, len_sec);
+		push_a(&(st->a), &(st->b));
+	}
+	else if (target_in_stack(bc, st->a))
+	{
+		//printf("eppt : entre dans le else if\n");
+		while (top_stack(st->a)->index != bc)
+			push_b(&(st)->a, &(st)->b);
+	}
+}
+
+void	update_sent_priority_part_two(int best_choice, int *priority)
 {
 	if (priority[0] && priority[1])
 	{
@@ -141,20 +158,16 @@ void	update_priority_part_two(int best_choice, int *priority)
 	}
 }
 
-void	send_and_plug_priority(int best_choice, t_stack **a, t_stack **b, int *priority)
-// ligne trop longue
+void	plug_priority(int best_choice, t_stack **a, t_stack **b, int *priority)
 {
-	if (*a && *b)
+	if (priority[1] < 0)
 	{
-		if (top_stack(*a)->index == best_choice)
-			rotate_a(a, *b);
-		else if (top_stack(*b)->index == best_choice)
-		{
-			push_a(a, b);
-			rotate_a(a, *b);
-		}
+		reverserotate_a(a, *b);
+		swap_a(a, *b);
+		rotate_a(a, *b);
 	}
-	update_priority_part_two(best_choice, priority);
+	rotate_a(a, *b);
+	update_sent_priority_part_two(best_choice, priority);
 }
 
 void	shift_secondary(int *secondary, int nb_shift, int len_sec)
@@ -173,28 +186,30 @@ void	shift_secondary(int *secondary, int nb_shift, int len_sec)
 	}
 }
 
-void	update_priority(int *priority, int *secondary, int *nb_shift)
+void	update_priority_from_secondary(int *prio, int *sec, int *nb_shift)
 {
-	if (priority[0] < 0 && priority[1] < 0)
+	if (prio[0] < 0 && prio[1] < 0)
 	{
-		priority[0] = secondary[0];
-		priority[1] = secondary[1];
+		prio[0] = sec[0];
+		prio[1] = sec[1];
 		*nb_shift = 2;
 	}
-	else if (priority[0] < 0 && priority[1] > 0)
+	else if (prio[0] < 0 && prio[1] > 0)
 	{
-		priority[0] = priority[1];
-		priority[1] = secondary[0];
+		prio[0] = prio[1];
+		prio[1] = sec[0];
 		*nb_shift = 1;
 	}
 }
 
 void	lists_update_part_two(int *priority, int *secondary, int len_sec)
 {
+	printf("list_update_part_two : Entree\n");
 	int	nb_shift;
 
-	update_priority(priority, secondary, &nb_shift);
+	update_priority_from_secondary(priority, secondary, &nb_shift);
 	shift_secondary(secondary, nb_shift, len_sec);
+	printf("list_update_part_two : Fin\n");
 }
 
 t_stacks	*new_stacks(t_stack *a, t_stack *b)
@@ -208,11 +223,12 @@ t_stacks	*new_stacks(t_stack *a, t_stack *b)
 	return (stacks);
 }
 
+#include <unistd.h>
 void    part_two(t_stack **a, t_stack **b, t_stack *s)
 {
 	printf("part_two : Entree\n");
 	show_abs(*a, *b, s, len_stack(s));
-	// Durant cette partie, les secondary ne transitent qu'entre les top de a et de b
+	// Durant cette partie, les secondary ne transitent qu'entre les tops de a et de b
     int priority[2];
     int *sec;
 	int	len_sec;
@@ -231,13 +247,35 @@ void    part_two(t_stack **a, t_stack **b, t_stack *s)
 	printf("part_two : boucle imminente\n");
     while (priority[0])
     {
-		printf("part_two (boucle): debut iteration\n");
+		printf("part_two(boucle): debut iteration\n");
+		//show_stack(*a);
+		//show_stack(*b);
+		//show_abs(*a, *b, s, len_stack(s));
+
+		//show_abs(stacks->a, stacks->b, s, len_stack(s));
+		printf("part_two(boucle): show_abs passe\n");
+		//printf("part_two(boucle): best_choice proche ; affichage des parametres :\n");
+		//printf("part_two(boucle): priority[0] = ")
         best_choice = best_priority_choice(priority, sec, len_sec, stacks);
-		printf("part_two (boucle): best_choice defini\n");
-        extract_priority_ontop_part_two(best_choice, a, b);
-		printf("part_two (boucle): best_choice extrait\n");
-        send_and_plug_priority(best_choice, a, b, priority);
+		printf("part_two(boucle): best_choice defini = %d\n", best_choice);
+		//show_abs(*a, *b, s, len_stack(s));
+		//show_abs(stacks->a, stacks->b, s, len_stack(s));
+        extract_priority_part_two(best_choice, stacks, sec, len_sec);
+		printf("part_two(boucle): best_choice extrait\n");
+		//show_abs(*a, *b, s, len_stack(s));
+		//show_abs(stacks->a, stacks->b, s, len_stack(s));
+        plug_priority(best_choice, &(stacks->a), &(stacks->b), priority);
+		printf("part_two(boucle): plug_priority DONE\n");
+		//show_abs(*a, *b, s, len_stack(s));
+		show_abs(stacks->a, stacks->b, s, len_stack(s));
+		//printf("part_two(boucle): priority[0] = %d ; priority[1] = %d\n", priority[0], priority[1]);
         lists_update_part_two(priority, sec, len_sec);
+		printf("part_two(boucle): priority[0] = %d ; priority[1] = %d\n", priority[0], priority[1]);
+		printf("part_two(boucle): list_update_part_two DONE\n");
+		//show_abs(*a, *b, s, len_stack(s));
+		//show_abs(stacks->a, stacks->b, s, len_stack(s));
+		printf("part_two(boucle): Fin de l'iteration\n");
+		sleep(1);
     }
 	printf("part_two : Fin\n");
 }

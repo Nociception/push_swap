@@ -108,6 +108,7 @@ void    last_purge(t_stack **a, t_stack **b)
 void plug_nine_lucky(t_target *target, t_stack **a, t_stack **b, int *ht)
 {
 	//printf("plug_nine_lucky : Entree\n");
+	//show_target_details(target);
 	if (target->stack == 'b')
 	{
 		if (target->destination == 'u')
@@ -143,6 +144,7 @@ void plug_nine_lucky(t_target *target, t_stack **a, t_stack **b, int *ht)
 
 void    nine_lucky(t_stack **a, t_stack **b, t_stack *s)
 {
+	//printf("nine_lucky : Entree\n");
 	t_target	*btarget;
 	int	head;
 	int	tail;
@@ -151,20 +153,26 @@ void    nine_lucky(t_stack **a, t_stack **b, t_stack *s)
 	btarget = NULL;
 	head = 6;
 	tail = 8;
-	while (head && tail < 12) 
+	while (head && tail < 12)
 	// ainsi, best target n'est appelee que si head > 0 et tail < 11
 	{
-		//printf("head = %d ; tail = %d\n", head, tail);
+		//printf("nine_lucky (boucle) : Debut iteration\n");
+		//printf("nice_lucky (boucle) : head = %d ; tail = %d\n", head, tail);
 		btarget = best_target(*a, *b, head, tail);
 		if (btarget->index < head)
 		{
+			//printf("part_one (boucle) : entree dans le if\n");
 			plug_nine_lucky(btarget, a, b, &head);
 		}
 		else
 		{
+			//printf("part_one (boucle) : entree dans le else\n");
 			plug_nine_lucky(btarget, a, b, &tail);
 		}
+		//printf("nine_lucky (boucle) : fin iteration\n");
+		//printf("nice_lucky(boucle) : head = %d ; tail = %d\n", head, tail);
 	}
+	//printf("nine_lucky : Fin\n");
 }
 
 void    algo_six_seven_eight(t_stack **a, t_stack *b)
@@ -197,6 +205,19 @@ void    algo_six_seven_eight(t_stack **a, t_stack *b)
     }
 }
 
+void	lost_eleven(t_stack **a, t_stack **b)
+{
+	if (*a && *b)
+	{
+		if (bottom_stack(*b)->index == 11)
+			reverserotate_b(*a, b);
+		if (top_stack(*b)->index == 11)
+			push_a(a, b);
+		if (top_stack(*a)->index == 11)
+			rotate_a(a, *b);
+	}
+}
+
 void    part_one(t_stack **a, t_stack **b, t_stack *s)
 {
 	s = top_stack(s);
@@ -211,4 +232,5 @@ void    part_one(t_stack **a, t_stack **b, t_stack *s)
 	algo_six_seven_eight(a, *b);
 	//printf("part_one : algo_six_seven_eight passe\n");
     nine_lucky(a, b, s);
+	lost_eleven(a, b);
 }

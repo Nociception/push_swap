@@ -85,3 +85,18 @@ int len_stack(t_stack *stack)
     }
     return (len);
 }
+
+int	pos_index_in_stack(int index, t_stack *stack)
+{
+	int	position;
+
+	position = 0;
+	while (stack)
+	{
+		if (stack->index == index)
+			return (position);
+		position++;
+		stack = stack->next;
+	}
+	return (0);
+}

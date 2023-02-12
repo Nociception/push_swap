@@ -165,6 +165,7 @@ t_stack             *add_front(t_stack *stack, int nb);
 void                show_stack(t_stack *stack);
 t_stack             *array_to_stack(int *array, int len);
 int                 len_stack(t_stack *stack);
+int	pos_index_in_stack(int index, t_stack *stack);
 
 /*-----Stack details-----*/
 void                add_stack_backlinks(t_stack *stack);
