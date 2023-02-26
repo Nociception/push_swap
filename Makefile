@@ -3,18 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+         #
+#    By: tmongell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/14 22:17:52 by nstoutze          #+#    #+#              #
-#    Updated: 2023/02/26 16:35:54 by nstoutze         ###   ########.fr        #
+#    Created: 2023/02/26 21:33:49 by tmongell          #+#    #+#              #
+#    Updated: 2023/02/26 21:33:51 by tmongell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
 NAME = push_swap
-
-BNAME = checker
 
 SRC = direct_neighbors/both_tops_dneighbors.c \
 	  direct_neighbors/direct_neighbors.c \
@@ -73,57 +71,45 @@ SRC = direct_neighbors/both_tops_dneighbors.c \
 	  in_order.c \
 	  push.c \
 	  range_in_stack.c \
-
-BSRC = 
+	  valid_data.c \
 
 OBJ = $(SRC:.c=.o)
 
-BOBJ = $(BSRC:.c=.o)
+LIBFT = ./libft
 
-PRINTF = ./ft_printf
-
-LIBS = $(PRINTF)/libftprintf.a
+LIBS = $(LIBFT)/libft.a $(LIBFT)/ft_printf/libftprintf.a
 
 CFLAGS = -Wall -Wextra -Werror
 
-all : $(NAME) $(BNAME)
+BDIR = ./bonus/
 
-bonus : $(BNAME)
+all : $(NAME) bonus
+
+bonus :
+	make -C $(BDIR)
 
 mandatory : $(NAME)
 
 $(NAME): $(OBJ)
-	make library
+	@make -C $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
 	@echo project compiled
-
-$(BNAME): $(BOBJ)
-	make library
-	@$(CC) $(CFLAGS) $(BOBJ) $(LIBS) -o $(BNAME)
-	@echo bonus compiled
 
 %.o:%.c
 	@$(CC) $(FCLAGS) -c $< -o $@
 	@printf "compiling : $<                        \r"
 
 clean :
-	@rm -rf $(OBJ) $(BOBJ)
+	@rm -rf $(OBJ)
 	@echo object files removed
-	@make -s -C $(PRINTF) clean
+	@make -C $(LIBFT) clean
 	@echo printf cleaned
 
 fclean : clean
-	@rm -rf $(NAME) $(BNAME)
+	@rm -rf $(NAME)
 	@echo executable removed
-	@make -s -C $(PRINTF) fclean
-
-library : printf
-
-printf :
-	@echo compiling ft_printf
-	@make -s -C $(PRINTF)
-	@echo $$'\033[Aft_printf compiled                                 '
+	@make -C $(LIBFT) fclean
 
 re : fclean all
 
-.PHONY:	all bonus mandatory $(NAME) $(BNAME) clean fclean re library printf
+.PHONY:	all bonus mandatory $(NAME) clean fclean re

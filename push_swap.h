@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include "./ft_printf/ft_printf.h"
+# include "libft/libft.h"
 
 typedef struct s_move
 {
@@ -122,6 +122,7 @@ void	push(t_stack **origin, t_stack **dest);
 void	push_a(t_stack **a, t_stack **b);
 void	push_b(t_stack **a, t_stack **b);
 int		simple_atoi(char *s);
+int		valid_data(int len, char *av[]);
 int		*fill_array_with_valid_data(int len, char *av[]);
 void	reverserotate(t_stack **stack);
 void	reverserotate_a(t_stack **a, t_stack *b);
@@ -140,7 +141,6 @@ void	swap_both(t_stack **a, t_stack **b);
 int		range_in_stack(t_stack *stack, int min, int max);
 void	presort(t_stack **a, t_stack **b, int min, int max);
 void	set_part_value(t_stack *a, int *part);
-
 #endif
 /*
 void	show_stack_details(t_stack *stack);

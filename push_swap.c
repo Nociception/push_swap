@@ -12,19 +12,6 @@
 
 #include "push_swap.h"
 
-int	valid_data(int len, char *av[])
-{
-	int	i;
-
-	i = -1;
-	while (++i < len)
-	{
-		if (!ft_atoi_push_swap(av[i + 1]))
-			return (0);
-	}
-	return (1);
-}
-
 void	push_swap(int ac, char *av[])
 {
 	int		*array;
@@ -64,12 +51,12 @@ int	main(int ac, char *av[])
 }
 
 /*
-virer les tester pour le rendu
-
 verifier les leaks
 reprendre janitor pour remplacer les free
 
-Norme (variable et noms de fichiers -> lettre majuscule ; headers)
+Norme :
+	DONE partie obligatoire
+	TO DO partie bonus
 
 bonus : checker
 
