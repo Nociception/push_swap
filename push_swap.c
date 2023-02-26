@@ -11,99 +11,67 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	valid_data(int len, char *av[])
+{
+	int	i;
+
+	i = -1;
+	while (++i < len)
+	{
+		if (!ft_atoi_push_swap(av[i + 1]))
+			return (0);
+	}
+	return (1);
+}
+
+void	push_swap(int ac, char *av[])
+{
+	int		*array;
+	int		*sorted;
+	t_stack	*a;
+	t_stack	*b;
+	t_stack	*s;
+
+	a = NULL;
+	b = NULL;
+	s = NULL;
+	array = fill_array_with_valid_data(ac - 1, av);
+	if (are_numbers_unique(array, ac - 1))
+	{
+		sorted = sort_array(array, ac - 1);
+		a = array_to_stack(array, ac - 1);
+		s = array_to_stack(sorted, ac - 1);
+		add_stack_backlinks(a);
+		index_on_s(s, ac - 1);
+		index_on_a(a, s);
+		algo_length(&a, &b, s, ac - 1);
+	}
+	else
+		ft_putstr_fd("Error\n", 0);
+}
+
+int	main(int ac, char *av[])
+{
+	if (ac > 1)
+	{
+		if (valid_data(ac - 1, av))
+			push_swap(ac, av);
+		else
+			ft_putstr_fd("Error\n", 0);
+	}
+	return (0);
+}
+
 /*
-REGLER LE PROBLEME DU 11 QUI N'EST PAS PLUS A LA FIN DE PART_ONE
+virer les tester pour le rendu
 
-retravailler l'algo 6 avant d'entamer l'algo principal
-une pile de contenant entre 7 et 13 (inclus) elements provoque une segfault ; 58 54 39 35 78 98 47
-Les piles de 0 a 6 passent, de meme que les piles contenant plus de 14 (inclus)
+verifier les leaks
+reprendre janitor pour remplacer les free
 
-Norme (variable lettre majuscule)
-headers
-Bonus : checker
-include printf
-parsing (nb uniques notamment)
-structure englobante (notamment pour compter le nombre de moves)
+Norme (variable et noms de fichiers -> lettre majuscule ; headers)
 
-ajouter une data a la structure t_stack pour generer un indice de circonstance
-OU
-jouer sur l'indice max
+bonus : checker
 
-free les targets perdantes
-
-stocker les les mouvements dans une liste chainee pour ensuite l'optimiser/ecremer
-
-Si aucun paramètre n’est spécifié, le programme ne doit rien afficher et rendre
-l’invite de commande.
-
-En cas d’erreur, vous devez afficher "Error" suivi d’un ’\n’ sur la sortie d’erreur.
-Par exemple, si certains paramètres ne sont pas des nombres, ne tiennent pas dans
-un int, ou encore, s’il y a des doublons.
+stocker les mouvements dans une liste chainee pour ensuite l'optimiser/ecremer
 */
-
-void testing_random_moves(t_stack **a, t_stack **b)
-{
-	push_b(a, b);
-	push_b(a, b);
-	push_a(a, b);
-	push_b(a, b);
-	push_b(a, b);
-	push_a(a, b);
-	push_b(a, b);
-	rotate_a(a, *b);
-	rotate_a(a, *b);
-	rotate_a(a, *b);
-	rotate_b(*a, b);
-	rotate_b(*a, b);
-	rotate_b(*a, b);
-	reverserotate_a(a, *b);
-	reverserotate_a(a, *b);
-	reverserotate_a(a, *b);
-	reverserotate_a(a, *b);
-	reverserotate_b(*a, b);
-	reverserotate_b(*a, b);
-	reverserotate_b(*a, b);
-	swap_a(a, *b);
-	swap_b(*a, b);
-}
-
-int main(int ac, char *av[])
-{
-    int *array;
-    int *sorted;
-    int len;
-    t_stack *a;
-    t_stack *b;
-    t_stack *s;
-
-    len = ac - 1;
-    a = NULL;
-    b = NULL;
-    s = NULL;
-    if (ac > 1)
-    {
-        array = retrieve_data(len, av);
-        sorted = sort_array(array, len);
-        a = array_to_stack(array, len);
-        s = array_to_stack(sorted, len);
-        add_stack_backlinks(a);
-        index_on_s(s, len);
-        index_on_a(a, s);
-
-		show_abs(a, b, s, len);
-
-		//testing_random_moves(&a, &b);
-		algo_length(&a, &b, s, len);
-        
-		show_abs(a, b, s, len);
-    }
-    printf("MAIN : -----------------------------------\n");
-    printf("MAIN : traitement termine\n");
-	//print_moves(a, b);
-    if (sorted_final_stack_ontop(a))
-            printf("MAIN : STACK SORTED !!!\n");
-        else
-            printf("MAIN : Stack not sorted :( :( :(\n");
-    printf("MAIN : return (0) imminent ; AUCUN CRASH\n");
-    return (0);
-}

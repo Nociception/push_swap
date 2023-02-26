@@ -39,6 +39,8 @@ int	shortest_way_to_target(int target, t_stack *stack)
 
 void	extraction(int nb_rotate, t_stack **a, t_stack **b, char stack)
 {
+	*a = top_stack(*a);
+	*b = top_stack(*b);
 	if (nb_rotate > 0)
 	{
 		while (--nb_rotate >= 0)
@@ -51,7 +53,7 @@ void	extraction(int nb_rotate, t_stack **a, t_stack **b, char stack)
 	}
 	else if (nb_rotate < 0)
 	{
-		while (++nb_rotate < 0) // ++nb_rotate <= 0 passe en ++nb_rotate < 0
+		while (++nb_rotate < 0)
 		{
 			if (stack == 'a')
 				reverserotate_a(a, *b);
@@ -92,35 +94,3 @@ int	target_in_stack(int target, t_stack *stack)
 	}
 	return (0);
 }
-
-/*
-void	extract_target_ontop(int target, t_stack **stack)
-{
-	int	nb_rotate;
-
-	if (*stack && target_in_stack(target, *stack))
-	{
-		nb_rotate = shortest_way_to_target(target, *stack);
-		if (nb_rotate > 0)
-		{
-			while (--nb_rotate >= 0)
-			{
-				if ((*stack)->a_or_b == 'A')
-					rotate_a(stack);
-				else
-					rotate_b(stack);
-			}
-		}
-		else if (nb_rotate < 0)
-		{
-			while (++nb_rotate < 0) // ++nb_rotate <= 0 passe en ++nb_rotate < 0
-			{
-				if ((*stack)->a_or_b == 'A')
-					reverserotate_a(stack);
-				else
-					reverserotate_b(stack);
-			}
-		}
-	}
-}
-*/

@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   length_beyond_seven.c                              :+:      :+:    :+:   */
+/*   stack_top_bottom.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 18:35:04 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/17 18:35:04 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/11 23:59:51 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/11 23:59:51 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	algo_beyond_seven(t_stack **a, t_stack **b, t_stack *s)
+t_stack	*bottom_stack(t_stack *stack)
 {
-	part_one(a, b);
-	part_two(a, b, s);
+	while (stack && stack->next)
+		stack = stack->next;
+	return (stack);
+}
+
+t_stack	*top_stack(t_stack *stack)
+{
+	while (stack && stack->precedent)
+		stack = stack->precedent;
+	return (stack);
 }

@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 20:50:14 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/12 00:13:31 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:57:00 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	reverserotate_a(t_stack **a, t_stack *b)
 	if (*a && (*a)->next)
 	{
 		reverserotate(a);
-		printf("rra\n");
+		ft_printf("rra\n");
 		index_zero = index_stack(*a, b, 0);
 		add_back_move(index_zero->move, 'r', 'r', 'a');
 	}
@@ -59,7 +59,7 @@ void	reverserotate_b(t_stack *a, t_stack **b)
 	if (*b && (*b)->next)
 	{
 		reverserotate(b);
-		printf("rrb\n");
+		ft_printf("rrb\n");
 		index_zero = index_stack(a, *b, 0);
 		add_back_move(index_zero->move, 'r', 'r', 'b');
 	}
@@ -71,7 +71,7 @@ void	reverserotate_both(t_stack **a, t_stack **b)
 
 	if (*a && (*a)->next && *b && (*b)->next)
 	{
-		printf("rrr\n");
+		ft_printf("rrr\n");
 		reverserotate(a);
 		reverserotate(b);
 		index_zero = index_stack(*a, *b, 0);

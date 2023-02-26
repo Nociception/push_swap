@@ -12,29 +12,22 @@
 
 #include "push_swap.h"
 
-int	*retrieve_data(int len, char *av[])
-{
-	int	*array;
-	int	i;
-
-	i = -1;
-	array = (int *)malloc(sizeof(int) * len);
-	if (!array)
-		return (NULL);
-	while (++i < len)
-		array[i] = ft_atoi(av[i + 1]);
-	return (array);
-}
-
-void	show_array(int *array, int len)
+int	are_numbers_unique(int *array, int len)
 {
 	int	i;
+	int	j;
 
 	i = -1;
-	printf("------------------\n");
 	while (++i < len)
-		printf("%d\n", array[i]);
-	printf("------------------\n");
+	{
+		j = i;
+		while (++j < len)
+		{
+			if (array[i] == array[j])
+				return (0);
+		}
+	}
+	return (1);
 }
 
 int	*copy_array(int *array, int len)
@@ -99,3 +92,15 @@ int	is_nb_in_array(int nb, int *array, int len_array)
 	}
 	return (0);
 }
+/*
+void	show_array(int *array, int len)
+{
+	int	i;
+
+	i = -1;
+	printf("------------------\n");
+	while (++i < len)
+		printf("%d\n", array[i]);
+	printf("------------------\n");
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 20:51:43 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/12 00:18:55 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:56:48 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	rotate_a(t_stack **a, t_stack *b)
 	if (*a && (*a)->next)
 	{
 		rotate(a);
-		printf("ra\n");
+		ft_printf("ra\n");
 		index_zero = index_stack(*a, b, 0);
 		add_back_move(index_zero->move, 'r', 'a', ' ');
 	}
@@ -69,7 +69,7 @@ void	rotate_b(t_stack *a, t_stack **b)
 	if (*b && (*b)->next)
 	{
 		rotate(b);
-		printf("rb\n");
+		ft_printf("rb\n");
 		index_zero = index_stack(a, *b, 0);
 		add_back_move(index_zero->move, 'r', 'b', ' ');
 	}
@@ -81,7 +81,7 @@ void	rotate_both(t_stack **a, t_stack **b)
 
 	if (*a && (*a)->next && *b && (*b)->next)
 	{
-		printf("rr\n");
+		ft_printf("rr\n");
 		rotate(a);
 		rotate(b);
 		index_zero = index_stack(*a, *b, 0);
