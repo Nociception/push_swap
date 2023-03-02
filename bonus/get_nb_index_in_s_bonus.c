@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_putstr.c                                        :+:      :+:    :+:   */
+/*   get_nb_index_in_s_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:46:26 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 20:06:12 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/03/02 19:14:47 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/03/02 19:16:33 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "checker.h"
 
-void	pf_putstr(const char *s)
+int	get_nb_index_in_s(int a_nb, t_stack *s)
 {
-	int	i;
-
-	i = -1;
-	while (s[++i])
-		pf_putchar(s[i]);
+	s = top_stack(s);
+	while (s)
+	{
+		if (s->nb == a_nb)
+			return (s->index);
+		s = s->next;
+	}
+	return (-1);
 }

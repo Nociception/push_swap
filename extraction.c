@@ -46,9 +46,9 @@ void	extraction(int nb_rotate, t_stack **a, t_stack **b, char stack)
 		while (--nb_rotate >= 0)
 		{
 			if (stack == 'a')
-				rotate_a(a, *b);
+				rotate_a(a);
 			else
-				rotate_b(*a, b);
+				rotate_b(b);
 		}
 	}
 	else if (nb_rotate < 0)
@@ -56,9 +56,9 @@ void	extraction(int nb_rotate, t_stack **a, t_stack **b, char stack)
 		while (++nb_rotate < 0)
 		{
 			if (stack == 'a')
-				reverserotate_a(a, *b);
+				reverserotate_a(a);
 			else
-				reverserotate_b(*a, b);
+				reverserotate_b(b);
 		}
 	}
 }

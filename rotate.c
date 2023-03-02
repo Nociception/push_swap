@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 20:51:43 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/23 18:56:48 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:30:18 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,42 +49,30 @@ void	rotate(t_stack **stack)
 	}
 }
 
-void	rotate_a(t_stack **a, t_stack *b)
+void	rotate_a(t_stack **a)
 {
-	t_stack	*index_zero;
-
 	if (*a && (*a)->next)
 	{
 		rotate(a);
 		ft_printf("ra\n");
-		index_zero = index_stack(*a, b, 0);
-		add_back_move(index_zero->move, 'r', 'a', ' ');
 	}
 }
 
-void	rotate_b(t_stack *a, t_stack **b)
+void	rotate_b(t_stack **b)
 {
-	t_stack	*index_zero;
-
 	if (*b && (*b)->next)
 	{
 		rotate(b);
 		ft_printf("rb\n");
-		index_zero = index_stack(a, *b, 0);
-		add_back_move(index_zero->move, 'r', 'b', ' ');
 	}
 }
 
 void	rotate_both(t_stack **a, t_stack **b)
 {
-	t_stack	*index_zero;
-
 	if (*a && (*a)->next && *b && (*b)->next)
 	{
 		ft_printf("rr\n");
 		rotate(a);
 		rotate(b);
-		index_zero = index_stack(*a, *b, 0);
-		add_back_move(index_zero->move, 'r', 'r', ' ');
 	}
 }

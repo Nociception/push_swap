@@ -6,7 +6,7 @@
 /*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:14:47 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 19:59:01 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:04:26 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	checkbase(char *base)
 
 	b = 0;
 	i = 0;
-	if (pf_strlen(base) <= 1)
+	if (ft_strlen(base) <= 1)
 		return (0);
 	while (base[b])
 	{

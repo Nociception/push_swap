@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tmongell <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 21:33:49 by tmongell          #+#    #+#              #
-#    Updated: 2023/02/26 21:33:51 by tmongell         ###   ########.fr        #
+#    Updated: 2023/03/02 16:23:00 by nstoutze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,6 @@ SRC = direct_neighbors/both_tops_dneighbors.c \
 	  target/stargets_in_b.c \
       length_beyond_seven.c \
 	  push_swap.c \
-	  move_struct.c \
 	  algo_length.c \
 	  numbers_utils.c \
 	  retrieve_data.c \
@@ -72,41 +71,75 @@ SRC = direct_neighbors/both_tops_dneighbors.c \
 	  push.c \
 	  range_in_stack.c \
 	  valid_data.c \
+	  feed_stacks.c \
+	  ft_error.c \
+	  janitor.c \
+
+BNAME = checker
+
+BSRC = bonus/checker.c \
+	   bonus/stack_details_bonus.c \
+	   bonus/stack_basic_utils_bonus.c \
+	   bonus/stack_top_bottom_bonus.c \
+	   bonus/index_on_a_bonus.c \
+	   bonus/index_on_s_bonus.c \
+	   bonus/get_nb_index_in_s_bonus.c \
+	   bonus/index_stack_bonus.c \
+	   bonus/get_element_index_in_stack_bonus.c \
+	   bonus/final_stack_bonus.c \
+	   bonus/array_utils_bonus.c \
+	   bonus/retrieve_data_bonus.c \
+	   bonus/ft_atoi_push_swap_bonus.c \
+	   bonus/numbers_utils_bonus.c \
+	   bonus/valid_data_bonus.c \
+	   bonus/swap_bonus.c \
+	   bonus/push_bonus.c \
+	   bonus/rotate_bonus.c \
+	   bonus/reverse_rotate_bonus.c \
+	   bonus/extraction_bonus.c \
+	   bonus/feed_stacks_bonus.c \
+	   bonus/ft_error_bonus.c \
+	   bonus/janitor_bonus.c \
 
 OBJ = $(SRC:.c=.o)
 
+BOBJ = $(BSRC:.c=.o)
+
 LIBFT = ./libft
 
-LIBS = $(LIBFT)/libft.a $(LIBFT)/ft_printf/libftprintf.a
+LIBS = $(LIBFT)/libft.a
 
 CFLAGS = -Wall -Wextra -Werror
 
-BDIR = ./bonus/
-
-all : $(NAME) bonus
-
-bonus :
-	make -C $(BDIR)
+all : $(NAME)
 
 mandatory : $(NAME)
+
+bonus :
+	@make all
+	@make $(BNAME)
 
 $(NAME): $(OBJ)
 	@make -C $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
 	@echo project compiled
 
+$(BNAME): $(BOBJ)
+	@$(CC) $(CFLAGS) $(BOBJ) $(LIBS) -o $(BNAME)
+	@echo bonus compiled
+
 %.o:%.c
-	@$(CC) $(FCLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@printf "compiling : $<                        \r"
 
 clean :
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJ) $(BOBJ)
 	@echo object files removed
 	@make -C $(LIBFT) clean
 	@echo printf cleaned
 
 fclean : clean
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(BNAME)
 	@echo executable removed
 	@make -C $(LIBFT) fclean
 

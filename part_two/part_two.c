@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:10:27 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 15:11:12 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:52:40 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,28 @@
 static void	finisher(t_stack **a, t_stack **b)
 {
 	if (top_bottom_in_order(*a))
-		rotate_a(a, *b);
+		rotate_a(a);
 	else if (top_bottom_dneighbors(*a))
 	{
-		reverserotate_a(a, *b);
-		swap_a(a, *b);
-		rotate_a(a, *b);
-		rotate_a(a, *b);
+		reverserotate_a(a);
+		swap_a(a);
+		rotate_a(a);
+		rotate_a(a);
 	}
 	if (bottom_stack(*a)->index == bottom_stack(*a)->precedent->index + 2)
 	{
 		extract_target_ontop(bottom_stack(*a)->precedent->index + 1, a, b);
-		reverserotate_a(a, *b);
+		reverserotate_a(a);
 		push_a(a, b);
-		rotate_a(a, *b);
-		rotate_a(a, *b);
+		rotate_a(a);
+		rotate_a(a);
 	}
 	while (*b)
 	{
 		extract_target_ontop(bottom_stack(*a)->index + 1, a, b);
 		if (top_stack(*b)->index == bottom_stack(*a)->index + 1)
 			push_a(a, b);
-		rotate_a(a, *b);
+		rotate_a(a);
 	}
 }
 
@@ -64,7 +64,7 @@ void	part_two(t_stack **a, t_stack **b, t_stack *s)
 		push_b(a, b);
 		*a = top_stack(*a);
 		while ((*a)->index != 1)
-			rotate_a(a, *b);
+			rotate_a(a);
 		push_a(a, b);
 	}
 }

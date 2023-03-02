@@ -38,21 +38,6 @@ int	mean_two_positive_numbers(int x, int y)
 	return ((x + y) / 2);
 }
 
-int	ft_sqrt(int nb)
-{
-	int	sr;
-
-	sr = 0;
-	if (nb < 0)
-		return (0);
-	while (sr < 46341)
-	{
-		if (sr * sr >= nb)
-			return (sr);
-		sr++;
-	}
-	return (0);
-}
 /*
 int	len_int(int nb)
 {

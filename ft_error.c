@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:44:19 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 19:44:28 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/03/01 19:50:05 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/03/01 20:04:35 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft/libft.h"
 
-void	pf_putchar(char c)
+void	ft_error(char *str)
 {
-	write(1, &c, 1);
+	ft_putstr_fd(str, 2);
+	exit(1);
 }

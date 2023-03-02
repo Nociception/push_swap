@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:15:01 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/21 19:44:23 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 18:41:55 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,35 @@ int	simple_atoi(char *s)
 	return (n * neg);
 }
 
+void	len_and_shift(int *len, int *shift)
+{
+	*len *= -1;
+	*shift = 0;
+}
+
 int	*fill_array_with_valid_data(int len, char *av[])
 {
 	int	*array;
 	int	i;
+	int	shift;
 
 	i = -1;
+	if (len < 0)
+		len_and_shift(&len, &shift);
+	else
+		shift = 1;
 	array = (int *)malloc(sizeof(int) * len);
 	if (!array)
 		return (NULL);
 	while (++i < len)
 	{
-		if (ft_atoi_push_swap(av[i + 1]))
-			array[i] = simple_atoi(av[i + 1]);
+		if (ft_atoi_push_swap(av[i + shift]))
+			array[i] = simple_atoi(av[i + shift]);
+		else
+		{
+			janitor(array);
+			return (NULL);
+		}
 	}
 	return (array);
 }

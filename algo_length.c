@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 23:56:44 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 16:00:00 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:53:02 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	algo_length(t_stack **a, t_stack **b, t_stack *s, int len)
 			extract_target_ontop(0, a, b);
 	}
 	else if (len == 2 && (*a)->index)
-		swap_a(a, *b);
+		swap_a(a);
 	else if (len == 3 && !sfsot)
-		algo_three(a, *b);
+		algo_three(a);
 	else if (len == 4 && !sfsot)
 		algo_four(a, *b);
 	else if (len == 5 && !sfsot)

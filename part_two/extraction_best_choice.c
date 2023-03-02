@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:09:07 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 15:12:59 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:51:59 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	extraction_from_top_a(t_stack **a, t_stack **b, int bc, int thresh)
 	{
 		push_b(a, b);
 		if (top_stack(*b)->index > thresh)
-			rotate_b(*a, b);
+			rotate_b(b);
 	}
 }
 
@@ -29,7 +29,7 @@ static void	extraction_from_top_b(t_stack **a, t_stack **b, int bc, int thresh)
 		if (top_stack(*b)->index <= thresh)
 			push_a(a, b);
 		else
-			rotate_b(*a, b);
+			rotate_b(b);
 	}
 	push_a(a, b);
 }
@@ -38,11 +38,11 @@ static void	extraction_from_bottom_b(t_stack **a, t_stack **b, int bc, int thr)
 {
 	while (bottom_stack(*b)->index != bc)
 	{
-		reverserotate_b(*a, b);
+		reverserotate_b(b);
 		if (top_stack(*b)->index <= thr)
 			push_a(a, b);
 	}
-	reverserotate_b(*a, b);
+	reverserotate_b(b);
 	push_a(a, b);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 19:43:56 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/23 18:56:30 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:18:14 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,42 +45,30 @@ void	swap(t_stack **stack)
 	}
 }
 
-void	swap_a(t_stack **a, t_stack *b)
+void	swap_a(t_stack **a)
 {
-	t_stack	*index_zero;
-
 	if (*a && (*a)->next)
 	{
 		swap(a);
 		ft_printf("sa\n");
-		index_zero = index_stack(*a, b, 0);
-		add_back_move(index_zero->move, 's', 'a', ' ');
 	}
 }
 
-void	swap_b(t_stack *a, t_stack **b)
+void	swap_b(t_stack **b)
 {
-	t_stack	*index_zero;
-
 	if (*b && (*b)->next)
 	{
 		swap(b);
 		ft_printf("sb\n");
-		index_zero = index_stack(a, *b, 0);
-		add_back_move(index_zero->move, 's', 'b', ' ');
 	}
 }
 
 void	swap_both(t_stack **a, t_stack **b)
 {
-	t_stack	*index_zero;
-
 	if (*a && (*a)->next && *b && (*b)->next)
 	{
 		ft_printf("ss\n");
 		swap(a);
 		swap(b);
-		index_zero = index_stack(*a, *b, 0);
-		add_back_move(index_zero->move, 's', 's', ' ');
 	}
 }

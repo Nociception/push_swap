@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:50:15 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/21 19:20:49 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:56:41 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	moves_tt_dneighbors(t_stack **a, t_stack **b)
 	{
 		push_a(a, b);
 		if (!top_second_in_order(*a))
-			swap_a(a, *b);
-		ra_twice_if_necessary(a, *b);
+			swap_a(a);
+		ra_twice_if_necessary(a);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:24:33 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 19:59:02 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:33:20 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	format_p(va_list arg)
 
 	n = va_arg(arg, unsigned long long);
 	addlen = 2;
-	pf_putstr("0x");
+	ft_putstr_fd("0x", 1);
 	if (!n)
 	{
-		pf_putchar('0');
+		ft_putchar_fd('0', 1);
 		return (3);
 	}
-	pf_putnbr_ptr(n, "0123456789abcdef");
-	return (pf_unslololen(n) + addlen);
+	ft_putnbr_ptr(n, "0123456789abcdef");
+	return (ft_unslololen(n) + addlen);
 }

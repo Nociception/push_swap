@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 14:23:43 by nstoutze          #+#    #+#             */
-/*   Updated: 2022/11/21 17:00:47 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:22:58 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,18 @@ static char	*next_word(const char *s, int *ptr_i, char c)
 		(*ptr_i)++;
 	}
 	return (word);
+}
+
+int	len_char_starstar_from_split(char **char_starstar)
+{
+	int	len;
+	int	i;
+
+	len = 0;
+	i = -1;
+	while (char_starstar[++i])
+		len++;
+	return (len);
 }
 
 char	**ft_split(char const *s, char c)

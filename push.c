@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 21:02:20 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/23 18:57:21 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:27:19 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,18 @@ void	push(t_stack **origin, t_stack **dest)
 
 void	push_a(t_stack **a, t_stack **b)
 {
-	t_stack	*index_zero;
-
 	if (*b)
 	{
 		ft_printf("pa\n");
 		push(b, a);
-		*a = top_stack(*a);
-		(*a)->a_or_b = 'a';
-		index_zero = index_stack(*a, *b, 0);
-		add_back_move(index_zero->move, 'p', 'a', ' ');
 	}
 }
 
 void	push_b(t_stack **a, t_stack **b)
 {
-	t_stack	*index_zero;
-
 	if (*a)
 	{
 		ft_printf("pb\n");
 		push(a, b);
-		*b = top_stack(*b);
-		(*b)->a_or_b = 'b';
-		index_zero = index_stack(*a, *b, 0);
-		add_back_move(index_zero->move, 'p', 'b', ' ');
 	}
 }

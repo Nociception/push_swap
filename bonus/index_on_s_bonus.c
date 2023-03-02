@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_strlen.c                                        :+:      :+:    :+:   */
+/*   index_on_s_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:46:57 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 19:47:07 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/03/02 19:15:01 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/03/02 19:16:40 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long int	pf_strlen(char *str)
-{
-	long int	l;
+#include "checker.h"
 
-	l = 0;
-	while (str[l])
-		l++;
-	return (l);
+void	index_on_s(t_stack *s, int len)
+{
+	int	index;
+
+	index = 0;
+	s = top_stack(s);
+	while (s)
+	{
+		s->index = index;
+		s->index_max = len - 1;
+		index++;
+		s = s->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:28:50 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/17 19:46:08 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:47:27 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	moves_ppp(t_stack **a, t_stack **b)
 	{
 		push_b(a, b);
 		push_b(a, b);
-		rotate_a(a, *b);
-		rotate_a(a, *b);
+		rotate_a(a);
+		rotate_a(a);
 		push_a(a, b);
 		push_a(a, b);
 	}

@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:31:24 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/21 19:35:42 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:45:37 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // 3 4 5
 
-static void	three_for_five(t_stack **a, t_stack *b)
+static void	three_for_five(t_stack **a)
 {
 	int	first;
 	int	second;
@@ -24,20 +24,20 @@ static void	three_for_five(t_stack **a, t_stack *b)
 	second = (*a)->next->index;
 	third = (*a)->next->next->index;
 	if (first == 4 && second == 3 && third == 5)
-		swap_a(a, b);
+		swap_a(a);
 	else if (first == 4 && second == 5 && third == 3)
-		reverserotate_a(a, b);
+		reverserotate_a(a);
 	else if (first == 5 && second == 3 && third == 4)
-		rotate_a(a, b);
+		rotate_a(a);
 	else if (first == 3 && second == 5 && third == 4)
 	{
-		swap_a(a, b);
-		rotate_a(a, b);
+		swap_a(a);
+		rotate_a(a);
 	}
 	else if (first == 5 && second == 4 && third == 3)
 	{
-		swap_a(a, b);
-		reverserotate_a(a, b);
+		swap_a(a);
+		reverserotate_a(a);
 	}
 }
 
@@ -49,7 +49,7 @@ void	algo_six(t_stack **a, t_stack **b)
 	push_b(a, b);
 	extract_target_ontop(2, a, b);
 	push_b(a, b);
-	three_for_five(a, *b);
+	three_for_five(a);
 	push_a(a, b);
 	push_a(a, b);
 	push_a(a, b);

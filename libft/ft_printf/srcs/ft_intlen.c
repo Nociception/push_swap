@@ -6,11 +6,11 @@
 /*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:14:14 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 19:59:10 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:02:30 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	pf_intlen(long long n, char c)
+int	ft_intlen(long long n, char c)
 {
 	int	l;
 
@@ -36,7 +36,7 @@ int	pf_intlen(long long n, char c)
 	return (0);
 }
 
-int	pf_unslololen(unsigned long long n)
+int	ft_unslololen(unsigned long long n)
 {
 	int	l;
 

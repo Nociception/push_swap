@@ -6,7 +6,7 @@
 /*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:23:47 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 19:59:02 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:30:48 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	format_c(va_list arg)
 {
-	pf_putchar(va_arg(arg, int));
+	ft_putchar_fd(va_arg(arg, int), 1);
 	return (1);
 }

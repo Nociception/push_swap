@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:01:05 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/23 18:10:27 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:47:36 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	sorted_final_stack(t_stack *a)
 	int	i;
 	int	mod;
 
+	a = top_stack(a);
 	if (a)
 	{
 		i = 0;
