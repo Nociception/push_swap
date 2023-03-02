@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	algo_beyond_seven(t_stack **a, t_stack **b, t_stack *s)
 {

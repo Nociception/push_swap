@@ -6,11 +6,11 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:37:20 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/03/01 20:00:53 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:16:15 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	janitor(void *dust)
 {

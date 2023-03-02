@@ -6,11 +6,11 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:01:16 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/16 16:01:20 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:16:12 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	both_tops_in_order(t_stack *a, t_stack *b)
 {

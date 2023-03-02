@@ -6,11 +6,11 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 19:43:56 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/03/02 15:18:14 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:05:42 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	third_fct(t_stack **first, t_stack **second, t_stack **third)
 {

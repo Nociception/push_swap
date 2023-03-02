@@ -6,11 +6,11 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 20:50:14 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/03/02 15:18:34 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:05:34 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	reverserotate(t_stack **stack)
 {

@@ -6,7 +6,7 @@
 #    By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 21:33:49 by tmongell          #+#    #+#              #
-#    Updated: 2023/03/02 16:23:00 by nstoutze         ###   ########.fr        #
+#    Updated: 2023/03/02 20:17:07 by nstoutze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,24 +56,24 @@ SRC = direct_neighbors/both_tops_dneighbors.c \
 	  stack/stack_top_bottom.c \
 	  target/position_target_in_stack.c \
 	  target/stargets_in_b.c \
-      length_beyond_seven.c \
+	  ps_moves/reverse_rotate.c \
+	  ps_moves/rotate.c \
+	  ps_moves/push.c \
+	  ps_moves/swap.c \
+	  parse_and_get_data/feed_stacks.c \
+	  parse_and_get_data/retrieve_data.c \
+	  parse_and_get_data/valid_data.c \
+	  parse_and_get_data/ft_atoi_push_swap.c \
+      others/length_beyond_seven.c \
+	  others/algo_length.c \
+	  others/numbers_utils.c \
+	  others/array_utils.c \
+	  others/extraction.c \
+	  others/in_order.c \
+	  others/range_in_stack.c \
+	  others/ft_error.c \
+	  others/janitor.c \
 	  push_swap.c \
-	  algo_length.c \
-	  numbers_utils.c \
-	  retrieve_data.c \
-	  array_utils.c \
-	  reverse_rotate.c \
-	  rotate.c \
-	  extraction.c \
-	  ft_atoi_push_swap.c \
-	  swap.c \
-	  in_order.c \
-	  push.c \
-	  range_in_stack.c \
-	  valid_data.c \
-	  feed_stacks.c \
-	  ft_error.c \
-	  janitor.c \
 
 BNAME = checker
 

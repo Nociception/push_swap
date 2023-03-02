@@ -6,11 +6,11 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 23:56:44 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/03/02 15:53:02 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:15:58 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	algo_length(t_stack **a, t_stack **b, t_stack *s, int len)
 {

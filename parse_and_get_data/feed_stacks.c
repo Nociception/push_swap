@@ -6,11 +6,11 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:57:53 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/03/02 18:39:35 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:10:24 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	index_and_backlinks(t_stack *a, t_stack *s, int len)
 {

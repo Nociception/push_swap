@@ -6,11 +6,11 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:15:01 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/03/02 18:41:55 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:10:30 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	simple_atoi(char *s)
 {

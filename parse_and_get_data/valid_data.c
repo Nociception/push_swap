@@ -6,11 +6,11 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:45:50 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/03/02 17:58:59 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:10:33 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	valid_data(int len, char *av[])
 {

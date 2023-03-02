@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   range_in_stack.c                                   :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/24 17:38:50 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/26 15:53:50 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/03/01 19:50:05 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/03/02 20:16:10 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	range_in_stack(t_stack *stack, int min, int max)
+void	ft_error(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (min + i <= max)
-	{
-		if (target_in_stack(min + i, stack))
-			return (1);
-		i++;
-	}
-	return (0);
+	ft_putstr_fd(str, 2);
+	exit(1);
 }

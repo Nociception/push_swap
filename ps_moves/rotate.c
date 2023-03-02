@@ -6,11 +6,11 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 20:51:43 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/03/02 16:30:18 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:05:37 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	real_rotate(t_stack **top, t_stack **second, t_stack **bottom)
 {
