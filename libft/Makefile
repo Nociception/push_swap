@@ -6,7 +6,7 @@
 #    By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 11:03:26 by nstoutze          #+#    #+#              #
-#    Updated: 2023/03/02 16:26:11 by nstoutze         ###   ########.fr        #
+#    Updated: 2024/06/18 01:57:10 by nstoutze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ else
 OBJ_LIST = $(OBJ) $(OBJ_BONUS)
 endif
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 all : $(NAME)
 

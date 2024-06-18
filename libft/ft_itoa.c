@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:50:13 by nstoutze          #+#    #+#             */
-/*   Updated: 2022/11/17 16:05:33 by nstoutze         ###   ########.fr       */
+/*   Updated: 2024/06/18 01:56:36 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <math.h>
 
 static int	len_int(long long n)
 {
@@ -27,7 +28,7 @@ static int	len_int(long long n)
 	return (i + 1);
 }
 
-static int	pow(long long nb, long long power)
+static int	ft_pow(long long nb, long long power)
 {
 	long long	i;
 	long long	b;
@@ -49,7 +50,7 @@ static int	pow(long long nb, long long power)
 static char	*strset_for_itoa(long long *m,
 		long long *len, long long *i, char *ascii)
 {
-	long long	trash;
+	// long long	trash;
 
 	*len = len_int(*m);
 	if (*m < 0)
@@ -66,7 +67,7 @@ static char	*strset_for_itoa(long long *m,
 		(*i)++;
 		*m *= -1;
 	}
-	trash = *len + *i;
+	// trash = *len + *i;
 	return (ascii);
 }
 
@@ -85,9 +86,9 @@ char	*ft_itoa(int n)
 		return (0);
 	while (len--)
 	{
-		h = m / pow(10, len);
+		h = m / ft_pow(10, len);
 		ascii[i] = h + '0';
-		m -= h * pow(10, len);
+		m -= h * ft_pow(10, len);
 		i++;
 	}
 	return (ascii);
