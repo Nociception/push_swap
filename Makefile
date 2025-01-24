@@ -178,5 +178,12 @@ test-custom:
 visualizer:
 	@bash visualizer.sh
 
+mean100:
+	printf "Still TODO\n"
+
+mean500:
+	printf "Still TODO\n"
+
+
 help:
 	@printf "Must write it."
