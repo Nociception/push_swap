@@ -120,7 +120,7 @@ PROGRAM = ./push_swap
 
 
 all : $(NAME)
-	@printf "\"make help\" to explore the rules this Makefile proposes."
+	@printf "\"make help\" to explore the rules this Makefile proposes.\n"
 
 mandatory : $(NAME)
 
@@ -174,6 +174,9 @@ test500:
 
 test-custom:
 	@bash test.sh $(MIN) $(MAX) $(SIZE) $(PROGRAM) $(DISPLAY_LIST) $(CHECKER)
+
+visualizer:
+	@bash visualizer.sh
 
 help:
 	@printf "Must write it."

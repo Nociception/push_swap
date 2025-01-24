@@ -9,3 +9,5 @@ checker_linux
 *.o
 *.a
 *.dSYM
+imgui.ini
+push_swap_visualizer/
