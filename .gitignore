@@ -3,7 +3,8 @@
 a.out
 push_swap
 checker
-
+checker_Mac
+checker_linux
 .*.sw*
 *.o
 *.a

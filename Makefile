@@ -111,7 +111,16 @@ LIBS = $(LIBFT)/libft.a
 
 CFLAGS = -Wall -Wextra -Werror
 
+PROGRAM = ./push_swap
+
+
+.PHONY:	all bonus mandatory $(NAME) clean fclean re \
+		test100 test500 test-custom \
+		help
+
+
 all : $(NAME)
+	@printf "\"make help\" to explore the rules this Makefile proposes."
 
 mandatory : $(NAME)
 
@@ -145,4 +154,26 @@ fclean : clean
 
 re : fclean all
 
-.PHONY:	all bonus mandatory $(NAME) clean fclean re
+
+MIN ?= 0
+MAX ?= 99
+SIZE ?= 100
+DISPLAY_LIST ?= 0
+CHECKER ?= 0
+# CHECKER values:
+# 0: does not check
+# 1: checks on a Mac
+# 2: checks on linux
+# 3: checks with the bonus checker (my own)
+
+test100:
+	@bash test.sh 0 99 100 $(PROGRAM) $(DISPLAY_LIST) $(CHECKER)
+
+test500:
+	@bash test.sh 0 499 500 $(PROGRAM) $(DISPLAY_LIST) $(CHECKER)
+
+test-custom:
+	@bash test.sh $(MIN) $(MAX) $(SIZE) $(PROGRAM) $(DISPLAY_LIST) $(CHECKER)
+
+help:
+	@printf "Must write it."
