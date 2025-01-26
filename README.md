@@ -1,6 +1,6 @@
 # Overview
 Push Swap is [42](https://42.fr)'s common core project.
-The aim is to sort an integers stack in a minimum number of moves in a specific context where they are restricted.
+The aim is to sort an integer stack in a minimum number of moves in a specific context where they are restricted.
 
 GIF/WEBP HERE
 
@@ -18,10 +18,10 @@ GIF/WEBP HERE
 ---
 
 # Introduction
-With these specific rules (which I had never seen elsewhere), this project gave me something to think during all the days I worked on it ^^ I remember, it was something like an obsession.
+With these specific rules (which I had never seen elsewhere), this project gave me something to think about during all the days I worked on it ^^ I remember, it was something like an obsession.
 Never enough optimization! In fact, when I read it now, I have new ideas, but it is not the time anymore to improve this project's algorithm.
 
-Apart from that, it was also the opportunity to better master linked list (discovered in the first 42's common core project libft, which is by the way included in my push_swap): double linked list! After this project, this concept was my first choice to solve many C challenges.
+Apart from that, it was also the opportunity to better master linked list (discovered in the first 42's common core project libft, which is by the way included in my push_swap): double linked list! After this project, this concept was my first choice to solve many C challenges. Parsing was also my best one so far.
 
 Note: project's files and directories tree structure have been reorganized. It is of course not the same as in the official 42's repo ; algorithm did not change (so far).
 
@@ -132,16 +132,16 @@ Tip: spot the little square on each of these code boxes (just below in this tuto
 # Aim and Rules
 
 ## Start End
-Start: you receive a randomly chosen integers stack (which we will call `A`), and have at your disposal another stack `B`, empty.
+Start: you receive a randomly chosen integers in a stack (which we will call `A`), and have at your disposal another stack `B`, empty.
 This `B` stack is in fact essential: with many numbers at start, you have to use it to get a proper `score`.
 You must sort `A` in the `ascending order`, from top to bottom.
 
 ```
- 58                                      -45
--45                                      -2
- 78                ---- goal ---->        8
--2                                        58
- 8                                        78
+ 1                                         1
+ 8                                         5
+ 6                ---- goal ---->          6
+ 9                                         8
+ 5                                         9
  A      B                                  A      B
 ```
 
@@ -149,36 +149,41 @@ You must sort `A` in the `ascending order`, from top to bottom.
 You must strive to sort the `A` stack by using the less `moves`.
 `B` must be empty at the end, as no integer can miss in `A`.
 
+With a 100 integers stack, you must use less than 700 `moves` to get the maximum score.
+
+With a 500 integers stack, less than 5500 `moves` gives the maximum score.
+
 ## Moves
-You cannot move any number as you want. Here are the only possible moves:
+You cannot move any number anywhere as you want. Here are the only possible moves:
 
 ![terminal_picture](https://github.com/Nociception/assets_storage/blob/main/push_swap/push_swap_moves.webp)
 
 [credits](https://medium.com/@kilfenbaridon/how-to-over-optimize-an-algorithm-push-swap-42-school-project-d01a50e5fd78)
 
 ## Output
-The program must then display all the moves, in the proper order, which lead to sort the `A` stack.
-For instance, to sort the [exemple](#Start-End) Start End section (try it before reading the solution, if you want to understand better):
+The program must then display all the moves, in the proper order, which lead to sort the `A` stack in the ascending order (from top to bottom).
+For instance, to sort the [exemple](#Start-End) in the Start End section (try it before reading the solution, if you want to understand better):
 ```bash
-./push_swap 58 -45 78 -2 8
-ra
+./push_swap 1 8 6 9 5
 pb
-ra
+rra
 pb
+sa
 pa
 pa
 ```
 Note: not all the moves are necessary here.
 
 ## Check
-So you get moves, in a specific order. But how to be sure the stack is properly sorted ?
-42 provides a `checker` I cannot share here (but if you are an active 42 student, use it ^^).
-Fortunatly, I did the bonus part, which asks us to write our own `checker`.
-Read the [Makefile]()'s test rules and the [test.sh]()'s file to know how my automatic tests work, and what exactly is done.
+So you get moves, in a specific order. But how to be sure the stack is properly sorted when applying them ?
+42 provides a `checker` which I cannot share here (but if you are an active 42 student, use it ^^).
+Fortunatly, I did the bonus part, which asks us to write our own `checker` (generate it with `make bonus`).
+Read the [Makefile](https://github.com/Nociception/push_swap/Makefile)'s test rules and the [test.sh](https://github.com/Nociception/test.sh)'s file to know how my automatic tests work, and what exactly they do.
 
 To activate the `checker mode`, change the Makefile variable's value `CHECKER` to 1, 2 or 3 (depending on which checker you choose).
 
 Usage:
+Makefile's variables are settable to adjust these rules' behavior.
 - test for 100 unique random integers:
 ```bash
 make test100
@@ -188,15 +193,15 @@ make test100
 make test500
 ```
 - customized test:
-Makefile's variables are settable to adjust these rules' behavior.
+Read the Makefile's rule to know what to type.
 ```bash
 make test-custom min max size display_list checker
 ```
 
 # Algorithm
-I heard about many algorithm already designed for this project. I knew before starting it that I wanted to create my own (no matter I potentially get one of them). That kind of puzzle is my thing.
+I heard about many algorithms already designed for this project. I knew before starting it that I wanted to create my own (no matter if I potentially get eventually and unwillingly one of them, without knowing it). That kind of puzzle is my thing.
 
-Further details and explanation about it later. In fact, I must plunge back into the depth of my code, as I wrote it at the beginnin of 42's common core. You get it: maybe not the easiest code to understand 😬
-But I have, far away somewhere in my memory, the logic. Some variables' value are set for a 100 integers stack, and differently set for 500 (which are the two bige sizes tested for getting the project validated).
+Further details and explanation about it later. In fact, I must plunge back into the depth of my code, as I wrote it at the beginning of 42's common core back then. You get it: maybe not the easiest code to understand 😬
+But I have, far away somewhere in my memory, the logic/idea. Some variables' value are set for a 100 integers stack, and differently set for 500 (which are the two big sizes tested for getting the project validated).
 
-Furthermore, I do not claim any perfection. In the end (for the defense), I was somehow satisfied. Write about incents me to improve it again.
+Furthermore, I do not claim any perfection. In the end (for the defense), I was somehow satisfied. Write about now incents me to improve it again, which I will not.
