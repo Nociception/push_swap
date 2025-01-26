@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_c.c                                         :+:      :+:    :+:   */
+/*   zero_to_five.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:23:47 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 17:30:48 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/26 14:07:00 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/26 14:54:30 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_c(va_list arg)
+void	zero_to_five(t_stack **a, t_stack **b)
 {
-	ft_putchar_fd(va_arg(arg, int), 1);
-	return (1);
+	int	target;
+
+	while (top_stack(*a)->index)
+	{
+		target = top_stack(*a)->index - 1;
+		extract_target_ontop(target, a, b);
+		push_a(a, b);
+	}
 }

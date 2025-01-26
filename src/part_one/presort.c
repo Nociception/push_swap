@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_s.c                                         :+:      :+:    :+:   */
+/*   presort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:26:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 22:52:18 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/26 14:03:22 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/03/02 15:48:37 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_s(va_list arg)
+void	presort(t_stack **a, t_stack **b, int min, int max)
 {
-	char	*str;
+	int	mid;
 
-	str = va_arg(arg, char *);
-	if (!str)
+	mid = (*a)->index_max / 2;
+	*a = top_stack(*a);
+	if ((*a)->index >= min && (*a)->index <= max)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		push_b(a, b);
+		*b = top_stack(*b);
+		if ((*b)->index >= mid + 1 && (*b)->index <= max)
+			rotate_b(b);
 	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	else
+		rotate_a(a);
 }

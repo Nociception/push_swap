@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_s.c                                         :+:      :+:    :+:   */
+/*   second_second_ms_dneighbors.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:26:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 22:52:18 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/17 17:53:21 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/21 19:24:13 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_s(va_list arg)
+int	second_second_ms_dneighbors(t_stack *a, t_stack *b)
 {
-	char	*str;
-
-	str = va_arg(arg, char *);
-	if (!str)
+	if (a && a->next && b && b->next)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		a = (top_stack(a))->next;
+		b = (top_stack(b))->next;
+		return (direct_neighbors(a->index, b->index, a->index_max));
 	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	return (0);
+}
+
+void	moves_ss_ms_dneighbors(t_stack **a, t_stack **b)
+{
+	if (*a && (*a)->next && *b && (*b)->next)
+	{
+		*a = top_stack(*a);
+		*b = top_stack(*b);
+		swap_both(a, b);
+	}
 }

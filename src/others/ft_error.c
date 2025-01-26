@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_c.c                                         :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:23:47 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 17:30:48 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/03/01 19:50:05 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/03/02 20:16:10 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_c(va_list arg)
+void	ft_error(char *str)
 {
-	ft_putchar_fd(va_arg(arg, int), 1);
-	return (1);
+	ft_putstr_fd(str, 2);
+	exit(1);
 }

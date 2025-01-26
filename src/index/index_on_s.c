@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_c.c                                         :+:      :+:    :+:   */
+/*   index_on_s.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:23:47 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 17:30:48 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/16 16:07:36 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/17 19:30:07 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_c(va_list arg)
+void	index_on_s(t_stack *s, int len)
 {
-	ft_putchar_fd(va_arg(arg, int), 1);
-	return (1);
+	int	index;
+
+	index = 0;
+	s = top_stack(s);
+	while (s)
+	{
+		s->index = index;
+		s->index_max = len - 1;
+		index++;
+		s = s->next;
+	}
 }

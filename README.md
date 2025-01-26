@@ -1,0 +1,1 @@
+Explain that the project's files and directories have been reorganized. It is not the same as in the 42's repo.

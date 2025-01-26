@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_c.c                                         :+:      :+:    :+:   */
+/*   valid_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:23:47 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 17:30:48 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/26 18:45:50 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/03/02 20:10:33 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_c(va_list arg)
+int	valid_data(int len, char *av[])
 {
-	ft_putchar_fd(va_arg(arg, int), 1);
+	int	i;
+	int	shift;
+
+	i = -1;
+	if (len < 0)
+	{
+		shift = 0;
+		len = -len;
+	}
+	else
+		shift = 1;
+	while (++i < len)
+	{
+		if (!ft_atoi_push_swap(av[i + shift]))
+			return (0);
+	}
 	return (1);
 }

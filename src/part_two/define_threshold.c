@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_s.c                                         :+:      :+:    :+:   */
+/*   define_threshold.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:26:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 22:52:18 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/26 15:04:45 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/26 15:05:00 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_s(va_list arg)
+int	define_threshold(t_stack *b, int index_max)
 {
-	char	*str;
+	int	min;
+	int	max;
+	int	threshold;
 
-	str = va_arg(arg, char *);
-	if (!str)
-	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	threshold = 1;
+	if (len_stack(b) == 0)
+		return (1);
+	min = index_min_in_stack(b);
+	max = index_max_in_stack(b);
+	if (index_max <= 100)
+		threshold = min + (max - min) / 7;
+	else if (index_max <= 500)
+		threshold = min + (max - min) / 14;
+	return (threshold);
 }

@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_s.c                                         :+:      :+:    :+:   */
+/*   initialize_priority.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:26:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 22:52:18 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/26 15:03:49 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/26 15:04:05 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_s(va_list arg)
+void	initialize_priority(int *priority, t_stack *a, t_stack *b)
 {
-	char	*str;
+	int	bottom_a;
 
-	str = va_arg(arg, char *);
-	if (!str)
+	if (len_stack(b) >= 2)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		bottom_a = bottom_stack(a)->index;
+		priority[0] = bottom_a + 1;
+		priority[1] = priority[0] + 1;
 	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	else if (len_stack(b) == 1)
+	{
+		priority[0] = b->index;
+		priority[1] = 0;
+	}
 }

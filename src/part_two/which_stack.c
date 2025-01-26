@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_c.c                                         :+:      :+:    :+:   */
+/*   which_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:23:47 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 17:30:48 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/26 15:06:02 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/26 15:06:03 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_c(va_list arg)
+t_stack	*which_stack(int target, t_stack *a, t_stack *b)
 {
-	ft_putchar_fd(va_arg(arg, int), 1);
-	return (1);
+	if (target_in_stack(target, a))
+		return (a);
+	return (b);
 }

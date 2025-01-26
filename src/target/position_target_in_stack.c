@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_s.c                                         :+:      :+:    :+:   */
+/*   position_target_in_stack.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:26:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 22:52:18 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/17 18:41:37 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/17 19:27:33 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_s(va_list arg)
+int	position_target_in_stack(int target, t_stack *stack)
 {
-	char	*str;
+	int	position;
 
-	str = va_arg(arg, char *);
-	if (!str)
+	if (stack)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		stack = top_stack(stack);
+		position = 0;
+		while (stack)
+		{
+			if (stack->index == target)
+				return (position);
+			position++;
+			stack = stack->next;
+		}
 	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	return (-1);
 }

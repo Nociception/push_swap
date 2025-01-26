@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_s.c                                         :+:      :+:    :+:   */
+/*   index_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:26:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 22:52:18 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/16 16:37:59 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/17 19:26:46 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_s(va_list arg)
+t_stack	*index_stack(t_stack *a, t_stack *b, int index)
 {
-	char	*str;
-
-	str = va_arg(arg, char *);
-	if (!str)
-	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	if (a && target_in_stack(index, a))
+		return (get_element_index_in_stack(a, index));
+	if (b && target_in_stack(index, b))
+		return (get_element_index_in_stack(b, index));
+	return (NULL);
 }

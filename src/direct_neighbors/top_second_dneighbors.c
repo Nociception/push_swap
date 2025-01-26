@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_s.c                                         :+:      :+:    :+:   */
+/*   top_second_dneighbors.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:26:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 22:52:18 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/02/17 17:51:17 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/03/02 15:58:52 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_s(va_list arg)
+int	top_second_dneighbors(t_stack *a)
 {
-	char	*str;
-
-	str = va_arg(arg, char *);
-	if (!str)
+	if (a && a->next)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		a = top_stack(a);
+		return (direct_neighbors(a->index, a->next->index, a->index_max));
 	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	return (0);
+}
+
+void	moves_ts_direct_neighbors(t_stack **a, t_stack *b)
+{
+	if (*a && (*a)->next)
+	{
+		if (!top_second_in_order(*a))
+		{
+			swap_a(a);
+			if (both_tops_dneighbors(*a, b))
+				return ;
+		}
+		ra_twice_if_necessary(a);
+	}
 }

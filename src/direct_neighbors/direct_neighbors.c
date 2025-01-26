@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_c.c                                         :+:      :+:    :+:   */
+/*   direct_neighbors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 14:23:47 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/02/28 17:30:48 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/01/29 15:31:49 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/02/17 19:26:02 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	format_c(va_list arg)
+int	direct_neighbors(int i, int j, int index_max)
 {
-	ft_putchar_fd(va_arg(arg, int), 1);
-	return (1);
+	int	range;
+
+	if ((i == 0 && j == index_max) || (i == index_max && j == 0))
+		return (1);
+	range = abs_val(i - j);
+	if (range == 1)
+		return (1);
+	return (0);
 }

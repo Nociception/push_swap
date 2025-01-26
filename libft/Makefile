@@ -63,10 +63,16 @@ SRC = ft_atoi.c \
 	  ft_printf/srcs/checkbase.c \
 	  ft_printf/srcs/ft_putnbr_base.c \
 
-SRC_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+SRC_BONUS = ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c \
 
 OBJ = $(SRC:.c=.o)
-
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 ifndef WITH_BONUS
@@ -75,7 +81,8 @@ else
 OBJ_LIST = $(OBJ) $(OBJ_BONUS)
 endif
 
-CFLAGS = #-Wall -Wextra -Werror
+INCLUDES = -I ../include/libft
+CFLAGS = $(INCLUDES) #-Wall -Wextra -Werror
 
 all : $(NAME)
 
@@ -86,11 +93,16 @@ $(NAME) : $(OBJ_LIST)
 bonus :	
 	@make WITH_BONUS=1 all
 
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+	@printf "Compiling: $<\n"
+
 clean :
-	rm -rf $(OBJ)
-	rm -rf $(OBJ_BONUS)
+	rm -rf $(OBJ) $(OBJ_BONUS)
+	@echo "Cleaned objects."
 
 fclean : clean
 	rm -rf $(NAME)
+	@echo "Removed library."
 
 re : fclean all
