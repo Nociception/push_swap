@@ -3,7 +3,7 @@
 advices_and_credits="
 The visualizer interface is made of three movable blocs.\n\
 I suggest you to move them to the right side of your screen,\n\
-and to spread them to avoid overlaping.\n\
+and to spread them to avoid overlaping between them.\n\
 \n\
 Usage:\n\
 - read there : https://github.com/o-reo/push_swap_visualizer/blob/master/README.md#usage \n\
@@ -29,7 +29,8 @@ if [ -f push_swap_visualizer/build/bin/visualizer ]; then
     printf "%b" "$advices_and_credits"
     read -p "Got it ? [Y/N]: " answer;
     if [ "$answer" = "Y" ] || [ "$answer" = "y" ]; then
-        ./push_swap_visualizer/build/bin/visualizer
+        cd push_swap_visualizer/build
+        ./bin/visualizer
         exit 0
     else
         printf "Exiting...\n"
