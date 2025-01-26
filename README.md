@@ -131,8 +131,10 @@ Tip: spot the little square on each of these code boxes (just below in this tuto
 
 # Aim and Rules
 
+## Start End
 Start: you receive a randomly chosen integers stack (which we will call `A`), and have at your disposal another stack `B`, empty.
 This `B` stack is in fact essential: with many numbers at start, you have to use it to get a proper `score`.
+You must sort `A` in the `ascending order`, from top to bottom.
 
 ```
  58                                      -45
@@ -148,11 +150,53 @@ You must strive to sort the `A` stack by using the less `moves`.
 `B` must be empty at the end, as no integer can miss in `A`.
 
 ## Moves
+You cannot move any number as you want. Here are the only possible moves:
+
 ![terminal_picture](https://github.com/Nociception/assets_storage/blob/main/push_swap/push_swap_moves.webp)
+
 [credits](https://medium.com/@kilfenbaridon/how-to-over-optimize-an-algorithm-push-swap-42-school-project-d01a50e5fd78)
 
+## Output
+The program must then display all the moves, in the proper order, which lead to sort the `A` stack.
+For instance, to sort the [exemple](#Start-End) Start End section (try it before reading the solution, if you want to understand better):
+```bash
+./push_swap 58 -45 78 -2 8
+ra
+pb
+ra
+pb
+pa
+pa
+```
+Note: not all the moves are necessary here.
 
+## Check
+So you get moves, in a specific order. But how to be sure the stack is properly sorted ?
+42 provides a `checker` I cannot share here (but if you are an active 42 student, use it ^^).
+Fortunatly, I did the bonus part, which asks us to write our own `checker`.
+Read the [Makefile]()'s test rules and the [test.sh]()'s file to know how my automatic tests work, and what exactly is done.
 
+To activate the `checker mode`, change the Makefile variable's value `CHECKER` to 1, 2 or 3 (depending on which checker you choose).
 
+Usage:
+- test for 100 unique random integers:
+```bash
+make test100
+```
+- test for 500 unique random integers:
+```bash
+make test500
+```
+- customized test:
+Makefile's variables are settable to adjust these rules' behavior.
+```bash
+make test-custom min max size display_list checker
+```
 
+# Algorithm
+I heard about many algorithm already designed for this project. I knew before starting it that I wanted to create my own (no matter I potentially get one of them). That kind of puzzle is my thing.
 
+Further details and explanation about it later. In fact, I must plunge back into the depth of my code, as I wrote it at the beginnin of 42's common core. You get it: maybe not the easiest code to understand 😬
+But I have, far away somewhere in my memory, the logic. Some variables' value are set for a 100 integers stack, and differently set for 500 (which are the two bige sizes tested for getting the project validated).
+
+Furthermore, I do not claim any perfection. In the end (for the defense), I was somehow satisfied. Write about incents me to improve it again.
