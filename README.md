@@ -37,6 +37,12 @@ Note: project's files and directories tree structure have been reorganized. It i
    ```bash
    make
    ```
+3. Run it:
+   ```bash
+   ./push_swap 5 -8 7 55 6
+   ```
+   Change the integers as you want, add or remove some.
+   But be careful: no duplicates, nor unvalid character (something different than `-+0123456789`).
 
 ---
 
@@ -88,7 +94,7 @@ Tip: spot the little square on each of these code boxes (just below in this tuto
    This is free software: you are free to change and redistribute it.
    There is NO WARRANTY, to the extent permitted by law.
 
-   Then skip this step and go back to [the main installation guide](#Getting-Started).
+   Then go to the step 5.
 
    Otherwise, install it:
    ```bash
@@ -99,13 +105,34 @@ Tip: spot the little square on each of these code boxes (just below in this tuto
    It would require a lot of manual typing in your terminal without it.
    Read more about `make` [here](https://en.wikipedia.org/wiki/Make_(software)).
 
+5. Install `gcc`:
+   You maybe already have it ; check it out:
+   ```bash
+   gcc --version
+   ```
+   If you have something like:
+   gcc (Ubuntu 10.5.0-1ubuntu1~22.04) 10.5.0
+   Copyright (C) 2020 Free Software Foundation, Inc.
+   This is free software; see the source for copying conditions.  There is NO
+   warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+   Then skip this step and go back to [the main installation guide](#Getting-Started).
+   Otherwise, install it:
+   ```bash
+   sudo apt install gcc
+   ```
+
+   gcc compiles .c and .h files to produce .o files, gathered to generate a binary executable file : the program.
+   Read more about it [here](https://fr.wikipedia.org/wiki/GNU_Compiler_Collection)
+
    You and your computer are now ready to install the program! Go back to [the main installation guide](#Getting-Started).
 
 ---
 
 # Aim and Rules
 
-Start: you receive a randomly chosen integers stack (which we call `A`), and have at your disposal (essential in fact: to get a proper score, you have to use it) another stack `B`, empty.
+Start: you receive a randomly chosen integers stack (which we will call `A`), and have at your disposal another stack `B`, empty.
+This `B` stack is in fact essential: with many numbers at start, you have to use it to get a proper `score`.
 
 ```
  58                                      -45
@@ -113,8 +140,13 @@ Start: you receive a randomly chosen integers stack (which we call `A`), and hav
  78                ---- goal ---->        8
 -2                                        58
  8                                        78
-`A`    `B`                                `A`    `B`
+ A      B                                  A      B
 ```
 
+## Score:
+You must strive to sort the `A` stack by using the less `moves`.
+`B` must be empty at the end, as no integer can miss in `A`.
 
+## Moves:
+![terminal_picture](https://github.com/Nociception/assets_storage/blob/main/push_swap/push_swap_moves.webp)
 
