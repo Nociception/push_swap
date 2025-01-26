@@ -178,7 +178,7 @@ Note: not all the moves are necessary here.
 So you get moves, in a specific order. But how to be sure the stack is properly sorted when applying them ?
 42 provides a `checker` which I cannot share here (but if you are an active 42 student, use it ^^).
 Fortunatly, I did the bonus part, which asks us to write our own `checker` (generate it with `make bonus`).
-Read the [Makefile](https://github.com/Nociception/push_swap/main/Makefile)'s test rules and the [test.sh](https://github.com/Nociception/main/test.sh)'s file to know how my automatic tests work, and what exactly they do.
+Read the [Makefile](https://github.com/Nociception/push_swap/blob/main/Makefile)'s test rules and the [test.sh](https://github.com/Nociception/blob/main/test.sh)'s file to know how my automatic tests work, and what exactly they do.
 
 To activate the `checker mode`, change the Makefile variable's value `CHECKER` to 1, 2 or 3 (depending on which checker you choose).
 
