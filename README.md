@@ -107,13 +107,14 @@ Tip: spot the little square on each of these code boxes (just below in this tuto
 
 Start: you receive a randomly chosen integers stack (which we call `A`), and have at your disposal (essential in fact: to get a proper score, you have to use it) another stack `B`, empty.
 
+```
  58                                      -45
 -45                                      -2
  78                ---- goal ---->        8
 -2                                        58
  8                                        78
 `A`    `B`                                `A`    `B`
-
+```
 
 
 
