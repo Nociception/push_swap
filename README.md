@@ -143,10 +143,16 @@ This `B` stack is in fact essential: with many numbers at start, you have to use
  A      B                                  A      B
 ```
 
-## Score:
+## Score
 You must strive to sort the `A` stack by using the less `moves`.
 `B` must be empty at the end, as no integer can miss in `A`.
 
-## Moves:
+## Moves
 ![terminal_picture](https://github.com/Nociception/assets_storage/blob/main/push_swap/push_swap_moves.webp)
+[credits](https://medium.com/@kilfenbaridon/how-to-over-optimize-an-algorithm-push-swap-42-school-project-d01a50e5fd78)
+
+
+
+
+
 
