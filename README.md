@@ -2,7 +2,7 @@
 Push Swap is [42](https://42.fr)'s common core project.
 The aim is to sort an integer stack in a minimum number of moves in a specific context where they are restricted.
 
-GIF/WEBP HERE
+![visualizer_preview.gif](https://github.com/Nociception/assets_storage/blob/main/push_swap/visualizer_preview.gif)
 
 ---
 
